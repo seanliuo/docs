@@ -95,9 +95,9 @@
     {
       "group": "Endpoint Examples",
       "pages": [
-        "api-demo/endpoint/lark推送调用情况flow",
-        "api-demo/endpoint/api助手聊天",
-        "api-demo/endpoint/查询普罗米修斯"
+        "api-demo/endpoint/lark",
+        "api-demo/endpoint/api",
+        "api-demo/endpoint/proluo"
       ]
     }
   ],
