@@ -1,0 +1,923 @@
+简介
+本文档旨在为开发者提供使用 API数据分析项目 的详细指南。包括 API 的基本功能、使用方法、调用示例及返回数据说明等。
+相关文档：AI数据分析项目文档
+
+
+版本信息
+- 版本: 1.0.0
+- 发布日期: 2024-10-12
+
+联系信息
+- 作者: @周潼俊 
+
+
+认证
+所有请求都需要附带以下请求头：
+x-api-key: xxx
+登录 https://site1.seendoing.com/api-keys 获取api key
+[图片]
+
+
+API接口
+基础 URL
+所有 API 请求的基础 URL 为：
+https://site1.seendoing.com/
+
+
+
+数据库（知识库）接口
+
+
+
+
+
+创建数据库信息接口
+
+描述
+
+- 请求方法类型：POST
+- 请求路径：POST /api/v1/databases
+- 描述：创建新的数据库信息。
+
+请求体
+
+参数名        | 必选 | 类型   | 描述                                |
+------------- | ---- | ------ | ----------------------------------- |
+name          | 否   | string | 知识库名字                          |
+description   | 否   | string | 知识库描述                          |
+prompt        | 否   | string | prompt设定                          |
+database_name | 是   | string | 数据库名称                          |
+database_type | 是   | string | 数据库类型，如 MySQL, PostgreSQL 等 |
+hostname      | 是   | string | 数据库主机名或 IP 地址              |
+port          | 是   | int    | 数据库端口号                        |
+username      | 是   | string | 连接数据库的用户名                  |
+password      | 是   | string | 数据库密码，应存储加密后的密码哈希  |
+
+- 请求体示例
+
+{
+  "name": "hello",
+  "description": "this is a knowledge base",
+  "prompt": "",
+  "database_name": "library",
+  "database_type": "postgresql",
+  "hostname": "localhost",
+  "port": 5432,
+  "username": "postgres",
+  "password": "baiyiyu"
+}
+
+响应体
+
+参数名 | 类型   | 描述            |
+------ | ------ | --------------- |
+id     | string | 数据库信息的 ID |
+
+- 响应示例
+
+{
+  "code": 600,
+  "message": "success",
+  "data": {
+    "id": "xK5gnMSRxHLA"
+  }
+}
+
+错误
+
+状态码 | 描述 |
+------ | ---- |
+600    | 成功 |
+700    | 失败 |
+
+- 错误响应示例
+
+{
+  "code": 700,
+  "message": "error xxx",
+  "data": null
+}
+
+
+
+
+
+
+
+获取数据库信息接口
+
+描述
+
+- 请求方法类型：GET
+- 请求路径：GET /api/v1/databases/{database_id}
+- 描述：通过数据库 ID 获取数据库信息。
+
+请求体
+
+参数名      | 必选 | 类型   | 描述               |
+----------- | ---- | ------ | ------------------ |
+database_id | 是   | string | 数据库的唯一标识符 |
+
+- 请求体示例
+
+/api/v1/databases/xK5gnMSRxHLA
+
+响应体
+
+参数名        | 类型    | 描述                             |
+------------- | ------- | -------------------------------- |
+id            | string  | 唯一标识符，作为主键             |
+user_id       | string  | 关联的用户ID                     |
+name          | string  | 知识库名字                       |
+description   | string  | 知识库描述                       |
+prompt        | string  | prompt设定                       |
+database_name | string  | 数据库名称                       |
+database_type | string  | 数据库类型，如 MySQL, PostgreSQL |
+hostname      | string  | 数据库主机名或 IP 地址           |
+port          | int     | 数据库端口号                     |
+username      | string  | 连接数据库的用户名               |
+created_at    | float   | 创建时间                         |
+updated_at    | float   | 更新时间                         |
+status        | boolean | 数据库连接状态                   |
+
+- 响应示例
+
+{
+    "code": 600,
+    "message": "success",
+    "data": {
+        "id": "xK5gnMSRxHLA",
+        "user_id": "2d936649-2fbd-40ff-bc91-4ee2076550ac",
+        "name": "hello",
+        "description": "this is a knowledge base",
+        "prompt": "",
+        "database_name": "library",
+        "database_type": "postgresql",
+        "hostname": "localhost",
+        "port": 5432,
+        "username": "postgres",
+        "created_at": 1728732298.829782,
+        "updated_at": 1728732298.829782,
+        "status": true
+    }
+}
+
+错误
+
+状态码 | 描述         |
+------ | ------------ |
+600    | 成功         |
+700    | 数据库未找到 |
+
+- 错误响应示例
+
+{
+    "code": 700,
+    "message": "Database info not found",
+    "data": null
+}
+
+
+
+
+
+
+
+获取数据库列表接口
+
+描述
+
+- 请求方法类型：GET
+- 请求路径：GET /api/v1/databases/list/data
+- 描述：获取用户的所有数据库信息列表。
+
+请求体
+
+无
+
+
+
+响应体
+
+参数名        | 类型    | 描述                             |
+------------- | ------- | -------------------------------- |
+id            | string  | 唯一标识符，作为主键             |
+user_id       | string  | 关联的用户ID                     |
+name          | string  | 知识库名字                       |
+description   | string  | 知识库描述                       |
+prompt        | string  | prompt设定                       |
+database_name | string  | 数据库名称                       |
+database_type | string  | 数据库类型，如 MySQL, PostgreSQL |
+hostname      | string  | 数据库主机名或 IP 地址           |
+port          | int     | 数据库端口号                     |
+username      | string  | 连接数据库的用户名               |
+created_at    | float   | 创建时间                         |
+updated_at    | float   | 更新时间                         |
+status        | boolean | 数据库连接状态                   |
+
+- 响应示例
+
+{
+    "code": 600,
+    "message": "success",
+    "data": [
+        {
+            "id": "zyfyFJsiwudt",
+            "user_id": "2d936649-2fbd-40ff-bc91-4ee2076550ac",
+            "name": "hello",
+            "description": "this is a knowledge base",
+            "prompt": "",
+            "database_name": "library",
+            "database_type": "postgresql",
+            "hostname": "localhost",
+            "port": 5432,
+            "username": "postgres",
+            "created_at": 1728524158.594638,
+            "updated_at": 1728524158.594638,
+            "status": true
+        },
+        {
+            "id": "xK5gnMSRxHLA",
+            "user_id": "2d936649-2fbd-40ff-bc91-4ee2076550ac",
+            "name": "hello",
+            "description": "this is a knowledge base",
+            "prompt": "",
+            "database_name": "library",
+            "database_type": "postgresql",
+            "hostname": "localhost",
+            "port": 5432,
+            "username": "postgres",
+            "created_at": 1728732298.829782,
+            "updated_at": 1728732298.829782,
+            "status": true
+        }
+    ]
+}
+
+错误
+
+状态码 | 描述         |
+------ | ------------ |
+600    | 成功         |
+700    | 获取数据失败 |
+
+- 错误响应示例
+
+{
+    "code": 700,
+    "message": "Failed to retrieve database list",
+    "data": null
+}
+
+
+
+
+
+
+
+更新数据库信息接口
+
+描述
+
+- 请求方法类型：PUT
+- 请求路径：PUT /api/v1/databases/{database_id}
+- 描述：更新指定数据库的信息。
+
+请求头
+
+参数名        | 必选 | 类型   | 描述                    |
+------------- | ---- | ------ | ----------------------- |
+Authorization | 是   | string | Bearer 令牌             |
+Content-Type  | 是   | string | 应为 application/json |
+
+请求体
+
+参数名        | 必选 | 类型   | 描述                             |
+------------- | ---- | ------ | -------------------------------- |
+name          | 否   | string | 知识库名字                       |
+description   | 否   | string | 知识库描述                       |
+prompt        | 否   | string | prompt设定                       |
+database_name | 否   | string | 数据库名称                       |
+database_type | 否   | string | 数据库类型，如 MySQL, PostgreSQL |
+hostname      | 否   | string | 数据库主机名或 IP 地址           |
+port          | 否   | int    | 数据库端口号                     |
+username      | 否   | string | 连接数据库的用户名               |
+password      | 否   | string | 数据库密码                       |
+
+- 请求体示例
+
+{
+  "name": "hello",
+  "description": "this is a knowledge base",
+  "prompt": "you are a useful assistant.",
+  "database_name": "library",
+  "database_type": "postgresql",
+  "hostname": "localhost",
+  "port": 5432,
+  "username": "postgres",
+  "password": "baiyiyu"
+}
+
+响应体
+
+参数名  | 类型   | 描述     |
+------- | ------ | -------- |
+code    | int    | 状态码   |
+message | string | 信息描述 |
+data    | null   | 空       |
+
+- 响应示例
+
+{
+    "code": 600,
+    "message": "success",
+    "data": null
+}
+
+错误
+
+状态码 | 描述                                           |
+------ | ---------------------------------------------- |
+600    | 成功                                           |
+700    | 数据库信息未找到                               |
+700    | 数据库类型无效，必须为 "mysql" 或 "postgresql" |
+700    | 更新错误：数据库测试连接失败                   |
+
+- 错误响应示例
+
+{
+    "code": 700,
+    "message": "Invalid database_type. Must be 'mysql' or 'postgresql'",
+    "data": null
+}
+
+
+
+
+
+
+
+删除数据库信息接口
+
+描述
+
+- 请求方法类型：DELETE
+- 请求路径：DELETE /api/v1/databases/{database_id}
+- 描述：删除指定的数据库信息。
+
+请求体
+
+无请求体，仅需在路径中提供 database_id。
+
+- 请求示例
+
+DELETE /api/v1/databases/xK5gnMSRxHLA
+
+响应体
+
+参数名  | 类型   | 描述       |
+------- | ------ | ---------- |
+code    | int    | 响应状态码 |
+message | string | 响应信息   |
+data    | null   | 无数据返回 |
+
+- 响应示例
+
+{
+  "code": 600,
+  "message": "success",
+  "data": null
+}
+
+错误
+
+状态码 | 描述 |
+------ | ---- |
+600    | 成功 |
+700    | 失败 |
+
+- 错误响应示例
+
+{
+  "code": 700,
+  "message": "error xxx",
+  "data": null
+}
+
+
+
+
+
+
+
+测试数据库连接状态接口
+
+描述
+
+- 请求方法类型：GET
+- 请求路径：GET /api/v1/databases/{database_id}/connection_status
+- 描述：测试指定数据库的连接状态。
+
+请求体
+
+无请求体，仅需在路径中提供 database_id。
+
+- 请求示例
+
+GET /api/v1/databases/xK5gnMSRxHLA/connection_status
+
+响应体
+
+参数名  | 类型   | 描述           |
+------- | ------ | -------------- |
+code    | int    | 响应状态码     |
+message | string | 响应信息       |
+data    | bool   | 数据库连接状态 |
+
+- 响应示例
+
+{
+  "code": 600,
+  "message": "Connection successful",
+  "data": true
+}
+
+错误
+
+状态码 | 描述     |
+------ | -------- |
+600    | 连接成功 |
+700    | 连接失败 |
+
+- 错误响应示例
+
+{
+  "code": 700,
+  "message": "Database connection failed",
+  "data": false
+}
+
+
+
+
+
+会话接口
+
+
+
+创建对话信息接口
+
+描述
+
+- 请求方法类型：POST
+- 请求路径：POST /api/v1/conversation
+- 描述：创建新的对话信息。
+
+请求体
+
+参数名      | 必选 | 类型   | 描述               |
+----------- | ---- | ------ | ------------------ |
+database_id | 是   | string | 数据库的唯一标识符 |
+name        | 否   | string | 会话名称           |
+
+- 请求体示例
+
+{
+  "database_id": "xK5gnMSRxHLA",
+  "name": "hello"
+}
+
+响应体
+
+参数名  | 类型   | 描述             |
+------- | ------ | ---------------- |
+code    | int    | 响应状态码       |
+message | string | 响应信息         |
+data    | object | 包含新建会话的ID |
+
+- 响应示例
+
+{
+  "code": 600,
+  "message": "success",
+  "data": {
+    "id": "8052ec08-c034-4816-8dd8-10ddb999c90c"
+  }
+}
+
+错误
+
+状态码 | 描述 |
+------ | ---- |
+600    | 成功 |
+700    | 失败 |
+
+- 错误响应示例
+
+{
+  "code": 700,
+  "message": "error xxx",
+  "data": null
+}
+
+
+
+
+
+获取对话信息接口
+
+描述
+
+- 请求方法类型：GET
+- 请求路径：GET /api/v1/conversation/{conversation_id}
+- 描述：通过 ID 获取对话信息。
+
+请求体
+
+参数名          | 必选 | 类型   | 描述             |
+--------------- | ---- | ------ | ---------------- |
+conversation_id | 是   | string | 对话的唯一标识符 |
+
+- 请求体示例
+
+GET /api/v1/conversation/8052ec08-c034-4816-8dd8-10ddb999c90c
+
+响应体
+
+参数名      | 类型   | 描述        |
+----------- | ------ | ----------- |
+id          | string | 对话的 ID   |
+name        | string | 对话的名称  |
+database_id | string | 数据库的 ID |
+user_id     | string | 用户的 ID   |
+created_at  | float  | 创建时间    |
+updated_at  | float  | 更新时间    |
+
+- 响应示例
+
+{
+  "code": 600,
+  "message": "success",
+  "data": {
+    "id": "8052ec08-c034-4816-8dd8-10ddb999c90c",
+    "name": "hello",
+    "database_id": "xK5gnMSRxHLA",
+    "user_id": "2d936649-2fbd-40ff-bc91-4ee2076550ac",
+    "created_at": 1728733882.713548,
+    "updated_at": 1728733882.713548
+  }
+}
+
+错误
+
+状态码 | 描述       |
+------ | ---------- |
+600    | 成功       |
+700    | 对话未找到 |
+
+- 错误响应示例
+
+{
+  "code": 700,
+  "message": "conversation not found",
+  "data": null
+}
+
+
+
+
+
+
+
+获取用户对话列表接口
+
+描述
+
+- 请求方法类型：GET
+- 请求路径：GET /api/v1/conversation/list/data
+- 描述：获取指定数据库 ID 下用户的对话列表。
+
+请求体
+
+参数名      | 必选 | 类型   | 描述        |
+----------- | ---- | ------ | ----------- |
+database_id | 是   | string | 数据库的 ID |
+
+- 请求体示例
+
+{
+  "database_id": "xK5gnMSRxHLA"
+}
+
+响应体
+
+参数名      | 类型   | 描述        |
+----------- | ------ | ----------- |
+id          | string | 对话的 ID   |
+name        | string | 对话的名称  |
+database_id | string | 数据库的 ID |
+user_id     | string | 用户的 ID   |
+created_at  | float  | 创建时间    |
+updated_at  | float  | 更新时间    |
+
+- 响应示例
+
+{
+  "code": 600,
+  "message": "success",
+  "data": [
+    {
+      "id": "8052ec08-c034-4816-8dd8-10ddb999c90c",
+      "name": "hello",
+      "database_id": "xK5gnMSRxHLA",
+      "user_id": "2d936649-2fbd-40ff-bc91-4ee2076550ac",
+      "created_at": 1728733882.713548,
+      "updated_at": 1728733882.713548
+    }
+  ]
+}
+
+错误
+
+状态码 | 描述             |
+------ | ---------------- |
+600    | 成功             |
+700    | 获取对话列表失败 |
+
+- 错误响应示例
+
+{
+  "code": 700,
+  "message": "failed to retrieve conversation list",
+  "data": null
+}
+
+
+
+
+
+
+
+删除对话信息接口
+
+描述
+
+- 请求方法类型：DELETE
+- 请求路径：DELETE /api/v1/conversation/{conversation_id}
+- 描述：删除指定 ID 的对话信息。
+
+请求体
+
+参数名          | 必选 | 类型   | 描述             |
+--------------- | ---- | ------ | ---------------- |
+conversation_id | 是   | string | 对话的唯一标识符 |
+
+- 请求体示例
+
+DELETE /api/v1/conversation/8052ec08-c034-4816-8dd8-10ddb999c90c
+
+响应体
+
+参数名  | 类型   | 描述   |
+------- | ------ | ------ |
+code    | int    | 状态码 |
+message | string | 信息   |
+data    | null   | 无     |
+
+- 响应示例
+
+{
+  "code": 600,
+  "message": "success",
+  "data": null
+}
+
+错误
+
+状态码 | 描述         |
+------ | ------------ |
+600    | 成功         |
+700    | 删除对话失败 |
+
+- 错误响应示例
+
+{
+  "code": 700,
+  "message": "failed to delete conversation",
+  "data": null
+}
+
+
+
+
+
+
+
+
+
+Chat接口
+
+
+聊天接口
+
+描述
+
+- 请求方法类型：POST
+- 请求路径：POST /api/v1/chat
+- 描述：与系统进行聊天，并获取相关数据分析结果。
+
+请求体
+
+参数名     | 必选 | 类型   | 描述             |
+---------- | ---- | ------ | ---------------- |
+text       | 是   | string | 聊天内容         |
+session_id | 是   | string | 会话的唯一标识符 |
+
+- 请求体示例
+
+{
+  "text": "我想知道现在知识库有哪些用户",
+  "session_id": "8052ec08-c034-4816-8dd8-10ddb999c90c"
+}
+
+响应体
+
+参数名  | 类型   | 描述                       |
+------- | ------ | -------------------------- |
+code    | int    | 状态码                     |
+message | string | 信息                       |
+data    | object | 返回的数据，包括图表和文本 |
+
+- 响应示例
+
+{
+  "code": 600,
+  "message": "success",
+  "data": {
+    "chart_data": {
+      "type": "bar",
+      "data": {
+        "labels": ["Rg91sWb5"],
+        "datasets": [
+          {
+            "label": "Users",
+            "data": [1]
+          }
+        ]
+      },
+      "options": {
+        "responsive": true,
+        "plugins": {
+          "legend": {
+            "position": "top"
+          },
+          "title": {
+            "display": true,
+            "text": "Active Users"
+          }
+        },
+        "scales": {
+          "x": {
+            "display": true,
+            "title": {
+              "display": true,
+              "text": "User ID"
+            }
+          },
+          "y": {
+            "display": true,
+            "title": {
+              "display": true,
+              "text": "Count"
+            }
+          }
+        }
+      }
+    },
+    "text": "根据当前检索到的数据，知识库中当前活跃用户的信息如下：\n\n- **用户ID**：Rg91sWb5\n- **邮箱**：123@qq.com\n- **用户名**：zhou\n\n### 数据分析\n- 图表类型：条形图\n- 图表名称：活跃用户（Active Users）\n- X轴：用户ID\n- Y轴：用户数量\n- 数据集显示当前活跃用户的数量为1。\n\n### 见解\n当前的知识库用户数据有限，仅显示了一名活跃用户。如果需要进一步分析或扩展更多用户信息，建议检查数据源是否完整并确认检索条件是否准确。"
+  }
+}
+
+错误
+
+状态码 | 描述             |
+------ | ---------------- |
+700    | 会话未找到       |
+701    | 数据库信息未找到 |
+700    | 密码错误         |
+700    | 数据库连接失败   |
+700    | 网络波动，请重试 |
+
+- 错误响应示例
+
+{
+  "code": 700,
+  "message": "conversation is not found",
+  "data": null
+}
+
+
+
+
+
+
+
+聊天流式接口
+
+描述
+
+- 请求方法类型：POST
+- 请求路径：POST /api/v1/chat/stream
+- 描述：与系统进行实时聊天，获取流式数据分析结果。
+
+请求体
+
+参数名     | 必选 | 类型   | 描述             |
+---------- | ---- | ------ | ---------------- |
+text       | 是   | string | 聊天内容         |
+session_id | 是   | string | 会话的唯一标识符 |
+
+- 请求体示例
+
+{
+  "text": "我想知道现在知识库有哪些用户",
+  "session_id": "8052ec08-c034-4816-8dd8-10ddb999c90c"
+}
+
+响应体
+
+响应为流式数据，包含多个事件：
+
+- 响应示例
+
+{
+  "code": 601,
+  "message": "success",
+  "data": "I'm generating a chart for you..."
+}
+
+{
+  "code": 602,
+  "message": "success",
+  "data": "根据当前检索到的数据，知识库中当前活跃用户的信息如下：\n\n- **用户ID**：Rg91sWb5\n- **邮箱**：123@qq.com\n- **用户名**：zhou\n\n### 数据分析\n- **图表类型**：饼图\n- **图表名称**：用户分布（User Distribution）\n- **X轴**：用户\n- **Y轴**：数量\n- 数据集显示当前活跃用户的数量为1。\n\n### 见解\n当前的知识库用户数据仅显示了一名活跃用户。如果需要更多用户信息或更详细的分析，建议检查数据源的完整性和检索条件的准确性。"
+}
+
+{
+  "code": 603,
+  "message": "success",
+  "data": {
+    "type": "pie",
+    "data": {
+      "labels": [
+        "zhou"
+      ],
+      "datasets": [
+        {
+          "label": "User Count",
+          "data": [
+            1
+          ],
+          "type": "doughnut"
+        }
+      ]
+    },
+    "options": {
+      "responsive": true,
+      "plugins": {
+        "legend": {
+          "position": "top"
+        },
+        "title": {
+          "display": true,
+          "text": "User Distribution"
+        }
+      }
+    }
+  }
+}
+
+{
+  "code": 600,
+  "message": "success",
+  "data": "{}"
+}
+
+错误
+
+状态码 | 描述             |
+------ | ---------------- |
+700    | 会话未找到       |
+701    | 数据库信息未找到 |
+700    | 密码错误         |
+700    | 数据库连接失败   |
+700    | 网络波动，请重试 |
+
+- 错误响应示例
+
+{
+  "code": 700,
+  "message": "conversation is not found",
+  "data": null
+}
+
+
