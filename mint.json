@@ -29,6 +29,10 @@
     {
       "name": "API Reference",
       "url": "api-reference"
+    },
+    {
+      "name": "API Demo",
+      "url": "api-demo"
     }
   ],
   "anchors": [
@@ -36,6 +40,11 @@
       "name": "Documentation",
       "icon": "book-open-cover",
       "url": "https://mintlify.com/docs"
+    },
+    {
+      "name": "Community",
+      "icon": "slack",
+      "url": "https://mintlify.com/community"
     },
     {
       "name": "Blog",
@@ -75,6 +84,20 @@
         "api-reference/endpoint/get",
         "api-reference/endpoint/create",
         "api-reference/endpoint/delete"
+      ]
+    },
+    {
+      "group": "API Demo",
+      "pages": [
+        "api-demo/introduction"
+      ]
+    },
+    {
+      "group": "Endpoint Examples",
+      "pages": [
+        "api-demo/endpoint/get",
+        "api-demo/endpoint/create",
+        "api-demo/endpoint/delete"
       ]
     }
   ],
