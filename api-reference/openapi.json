@@ -278,7 +278,7 @@
                     }
                 },
                 "responses": {
-                    "200": {
+                    "204": {
                         "description": "",
                         "content": {
                             "application/json": {
