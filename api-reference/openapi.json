@@ -899,6 +899,403 @@
                 "security": []
             }
         },
+        "/api/v1/conversation": {
+            "post": {
+                "summary": "创建对话信息",
+                "deprecated": false,
+                "description": "创建新的对话信息。",
+                "tags": [],
+                "parameters": [
+                    {
+                        "name": "x-api-key",
+                        "in": "header",
+                        "description": "",
+                        "required": true,
+                        "example": "sk-LelkzwwFuKJuGJijZnduQzCorcecOvoHX4MGP-GxpObhw0c7mLc_p8m9hw118L8qIjlbE2ePcbs5hndxIVCkFw",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "database_id": {
+                                        "type": "string",
+                                        "description": "数据库的唯一标识符"
+                                    },
+                                    "name": {
+                                        "type": "string",
+                                        "description": "会话名称"
+                                    }
+                                },
+                                "required": [
+                                    "database_id"
+                                ]
+                            },
+                            "example": {
+                                "database_id": "xK5gnMSRxHLA",
+                                "name": "hello"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "code": {
+                                            "type": "integer",
+                                            "description": "状态码"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "description": "响应信息"
+                                        },
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "id": {
+                                                    "type": "string",
+                                                    "description": "id"
+                                                }
+                                            },
+                                            "required": [
+                                                "id"
+                                            ],
+                                            "description": "数据"
+                                        }
+                                    },
+                                    "required": [
+                                        "code",
+                                        "message",
+                                        "data"
+                                    ]
+                                },
+                                "examples": {
+                                    "1": {
+                                        "summary": "成功示例",
+                                        "value": {
+                                            "code": 600,
+                                            "message": "success",
+                                            "data": {
+                                                "id": "8052ec08-c034-4816-8dd8-10ddb999c90c"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "headers": {}
+                    }
+                },
+                "security": []
+            }
+        },
+        "/api/v1/conversation/{conversation_id}": {
+            "get": {
+                "summary": "获取对话信息",
+                "deprecated": false,
+                "description": "通过 ID 获取对话信息。",
+                "tags": [],
+                "parameters": [
+                    {
+                        "name": "conversation_id",
+                        "in": "path",
+                        "description": "",
+                        "required": true,
+                        "example": "8052ec08-c034-4816-8dd8-10ddb999c90c",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "x-api-key",
+                        "in": "header",
+                        "description": "",
+                        "required": true,
+                        "example": "sk-LelkzwwFuKJuGJijZnduQzCorcecOvoHX4MGP-GxpObhw0c7mLc_p8m9hw118L8qIjlbE2ePcbs5hndxIVCkFw",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {}
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "code": {
+                                            "type": "integer",
+                                            "description": "状态码"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "description": "响应信息"
+                                        },
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "id": {
+                                                    "type": "string",
+                                                    "description": "对话id"
+                                                },
+                                                "name": {
+                                                    "type": "string",
+                                                    "description": "对话名称"
+                                                },
+                                                "database_id": {
+                                                    "type": "string",
+                                                    "description": "数据库id"
+                                                },
+                                                "user_id": {
+                                                    "type": "string",
+                                                    "description": "用户id"
+                                                },
+                                                "created_at": {
+                                                    "type": "number",
+                                                    "description": "创建时间"
+                                                },
+                                                "updated_at": {
+                                                    "type": "number",
+                                                    "description": "更新时间"
+                                                }
+                                            },
+                                            "required": [
+                                                "id",
+                                                "name",
+                                                "database_id",
+                                                "user_id",
+                                                "created_at",
+                                                "updated_at"
+                                            ]
+                                        }
+                                    },
+                                    "required": [
+                                        "code",
+                                        "message",
+                                        "data"
+                                    ]
+                                },
+                                "examples": {
+                                    "1": {
+                                        "summary": "成功示例",
+                                        "value": {
+                                            "code": 600,
+                                            "message": "success",
+                                            "data": {
+                                                "id": "8052ec08-c034-4816-8dd8-10ddb999c90c",
+                                                "name": "hello",
+                                                "database_id": "xK5gnMSRxHLA",
+                                                "user_id": "2d936649-2fbd-40ff-bc91-4ee2076550ac",
+                                                "created_at": 1728733882.713548,
+                                                "updated_at": 1728733882.713548
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "headers": {}
+                    }
+                },
+                "security": []
+            },
+            "delete": {
+                "summary": "删除对话信息",
+                "deprecated": false,
+                "description": "删除指定 ID 的对话信息。",
+                "tags": [],
+                "parameters": [
+                    {
+                        "name": "conversation_id",
+                        "in": "path",
+                        "description": "",
+                        "required": true,
+                        "example": "8052ec08-c034-4816-8dd8-10ddb999c90c",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "x-api-key",
+                        "in": "header",
+                        "description": "",
+                        "required": true,
+                        "example": "sk-LelkzwwFuKJuGJijZnduQzCorcecOvoHX4MGP-GxpObhw0c7mLc_p8m9hw118L8qIjlbE2ePcbs5hndxIVCkFw",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {}
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {}
+                                }
+                            }
+                        },
+                        "headers": {}
+                    }
+                },
+                "security": []
+            }
+        },
+        "/api/v1/conversation/list/data": {
+            "get": {
+                "summary": "获取用户对话列表",
+                "deprecated": false,
+                "description": "获取指定数据库 ID 下用户的对话列表。",
+                "tags": [],
+                "parameters": [
+                    {
+                        "name": "x-api-key",
+                        "in": "header",
+                        "description": "",
+                        "required": true,
+                        "example": "sk-LelkzwwFuKJuGJijZnduQzCorcecOvoHX4MGP-GxpObhw0c7mLc_p8m9hw118L8qIjlbE2ePcbs5hndxIVCkFw",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "database_id": {
+                                        "type": "string",
+                                        "description": "数据库id"
+                                    }
+                                },
+                                "required": [
+                                    "database_id"
+                                ]
+                            },
+                            "example": {
+                                "database_id": "xK5gnMSRxHLA"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "code": {
+                                            "type": "integer",
+                                            "description": "状态码"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "description": "响应信息"
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "id": {
+                                                        "type": "string",
+                                                        "description": "对话的 ID"
+                                                    },
+                                                    "name": {
+                                                        "type": "string",
+                                                        "description": "对话的名称"
+                                                    },
+                                                    "database_id": {
+                                                        "type": "string",
+                                                        "description": "数据库的 ID"
+                                                    },
+                                                    "user_id": {
+                                                        "type": "string",
+                                                        "description": "用户的 ID"
+                                                    },
+                                                    "created_at": {
+                                                        "type": "number",
+                                                        "description": "创建时间"
+                                                    },
+                                                    "updated_at": {
+                                                        "type": "number",
+                                                        "description": "更新时间"
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "required": [
+                                        "code",
+                                        "message",
+                                        "data"
+                                    ]
+                                },
+                                "examples": {
+                                    "1": {
+                                        "summary": "成功示例",
+                                        "value": {
+                                            "code": 600,
+                                            "message": "success",
+                                            "data": [
+                                                {
+                                                    "id": "8052ec08-c034-4816-8dd8-10ddb999c90c",
+                                                    "name": "hello",
+                                                    "database_id": "xK5gnMSRxHLA",
+                                                    "user_id": "2d936649-2fbd-40ff-bc91-4ee2076550ac",
+                                                    "created_at": 1728733882.713548,
+                                                    "updated_at": 1728733882.713548
+                                                }
+                                            ]
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "headers": {}
+                    }
+                },
+                "security": []
+            }
+        },
         "/api/v1/chat/stream": {
             "post": {
                 "summary": "聊天流式",
