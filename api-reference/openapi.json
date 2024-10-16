@@ -154,7 +154,7 @@
                     {
                         "name": "x-api-key",
                         "in": "header",
-                        "description": "",
+                        "description": "密钥",
                         "required": true,
                         "example": "sk-LelkzwwFuKJuGJijZnduQzCorcecOvoHX4MGP-GxpObhw0c7mLc_p8m9hw118L8qIjlbE2ePcbs5hndxIVCkFw",
                         "schema": {
@@ -229,13 +229,53 @@
                     }
                 },
                 "responses": {
-                    "200": {
+                    "600": {
                         "description": "",
                         "content": {
                             "application/json": {
                                 "schema": {
                                     "type": "object",
-                                    "properties": {}
+                                    "properties": {
+                                        "code": {
+                                            "type": "integer",
+                                            "description": "状态码"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "description": "响应信息"
+                                        },
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "id": {
+                                                    "type": "string",
+                                                    "description": "数据库id"
+                                                }
+                                            },
+                                            "required": [
+                                                "id"
+                                            ],
+                                            "description": "数据"
+                                        }
+                                    },
+                                    "required": [
+                                        "code",
+                                        "message",
+                                        "data"
+                                    ],
+                                    "description": "状态码"
+                                },
+                                "examples": {
+                                    "1": {
+                                        "summary": "成功示例",
+                                        "value": {
+                                            "code": 600,
+                                            "message": "success",
+                                            "data": {
+                                                "id": "xK5gnMSRxHLA"
+                                            }
+                                        }
+                                    }
                                 }
                             }
                         },
