@@ -93,9 +93,12 @@
     {
       "group": "数据库（知识库）接口",
       "pages": [
-        "api-reference/endpoint/lark",
-        "api-reference/endpoint/api",
-        "api-reference/endpoint/proluo"
+        "api-reference/endpoint/databases_create",
+        "api-reference/endpoint/databases_getbyid",
+        "api-reference/endpoint/databases_getlist",
+        "api-reference/endpoint/databases_updbyid",
+        "api-reference/endpoint/databases_delbyid",
+        "api-reference/endpoint/databases_getstate"
       ]
     },
     {
