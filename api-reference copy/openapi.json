@@ -1,195 +1,592 @@
 {
   "openapi": "3.0.1",
   "info": {
-    "title": "OpenAPI Plant Store",
-    "description": "A sample API that uses a plant store as an example to demonstrate features in the OpenAPI specification",
-    "license": {
-      "name": "MIT"
-    },
-    "version": "1.0.0"
+      "title": "OpenAPI Plant Store",
+      "description": "A sample API that uses a plant store as an example to demonstrate features in the OpenAPI specification",
+      "license": {
+          "name": "MIT"
+      },
+      "version": "1.0.0"
   },
   "servers": [
-    {
-      "url": "http://sandbox.mintlify.com"
-    }
+      {
+          "url": "http://sandbox.mintlify.com"
+      }
   ],
   "security": [
-    {
-      "bearerAuth": []
-    }
+      {
+          "bearerAuth": []
+      }
   ],
   "paths": {
-    "/plants": {
-      "get": {
-        "description": "Returns all plants from the system that the user has access to",
-        "parameters": [
-          {
-            "name": "limit",
-            "in": "query",
-            "description": "The maximum number of results to return",
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Plant response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Plant"
+      "/plants": {
+          "get": {
+              "description": "Returns all plants from the system that the user has access to",
+              "parameters": [
+                  {
+                      "name": "limit",
+                      "in": "query",
+                      "description": "The maximum number of results to return",
+                      "schema": {
+                          "type": "integer",
+                          "format": "int32"
+                      }
                   }
-                }
+              ],
+              "responses": {
+                  "200": {
+                      "description": "Plant response",
+                      "content": {
+                          "application/json": {
+                              "schema": {
+                                  "type": "array",
+                                  "items": {
+                                      "$ref": "#/components/schemas/Plant"
+                                  }
+                              }
+                          }
+                      }
+                  },
+                  "400": {
+                      "description": "Unexpected error",
+                      "content": {
+                          "application/json": {
+                              "schema": {
+                                  "$ref": "#/components/schemas/Error"
+                              }
+                          }
+                      }
+                  }
               }
-            }
           },
-          "400": {
-            "description": "Unexpected error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
+          "post": {
+              "description": "Creates a new plant in the store",
+              "requestBody": {
+                  "description": "Plant to add to the store",
+                  "content": {
+                      "application/json": {
+                          "schema": {
+                              "$ref": "#/components/schemas/NewPlant"
+                          }
+                      }
+                  },
+                  "required": true
+              },
+              "responses": {
+                  "200": {
+                      "description": "plant response",
+                      "content": {
+                          "application/json": {
+                              "schema": {
+                                  "$ref": "#/components/schemas/Plant"
+                              }
+                          }
+                      }
+                  },
+                  "400": {
+                      "description": "unexpected error",
+                      "content": {
+                          "application/json": {
+                              "schema": {
+                                  "$ref": "#/components/schemas/Error"
+                              }
+                          }
+                      }
+                  }
               }
-            }
           }
-        }
       },
-      "post": {
-        "description": "Creates a new plant in the store",
-        "requestBody": {
-          "description": "Plant to add to the store",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/NewPlant"
+      "/plants/{id}": {
+          "delete": {
+              "description": "Deletes a single plant based on the ID supplied",
+              "parameters": [
+                  {
+                      "name": "id",
+                      "in": "path",
+                      "description": "ID of plant to delete",
+                      "required": true,
+                      "schema": {
+                          "type": "integer",
+                          "format": "int64"
+                      }
+                  }
+              ],
+              "responses": {
+                  "204": {
+                      "description": "Plant deleted",
+                      "content": {}
+                  },
+                  "400": {
+                      "description": "unexpected error",
+                      "content": {
+                          "application/json": {
+                              "schema": {
+                                  "$ref": "#/components/schemas/Error"
+                              }
+                          }
+                      }
+                  }
               }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "plant response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Plant"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "unexpected error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
           }
-        }
+      },
+      "/api/v1/conversation": {
+          "post": {
+              "summary": "创建对话信息",
+              "deprecated": false,
+              "description": "创建新的对话信息。",
+              "tags": [],
+              "parameters": [
+                  {
+                      "name": "x-api-key",
+                      "in": "header",
+                      "description": "",
+                      "required": true,
+                      "example": "sk-LelkzwwFuKJuGJijZnduQzCorcecOvoHX4MGP-GxpObhw0c7mLc_p8m9hw118L8qIjlbE2ePcbs5hndxIVCkFw",
+                      "schema": {
+                          "type": "string"
+                      }
+                  }
+              ],
+              "requestBody": {
+                  "content": {
+                      "application/json": {
+                          "schema": {
+                              "type": "object",
+                              "properties": {
+                                  "database_id": {
+                                      "type": "string",
+                                      "description": "数据库的唯一标识符"
+                                  },
+                                  "name": {
+                                      "type": "string",
+                                      "description": "会话名称"
+                                  }
+                              },
+                              "required": [
+                                  "database_id"
+                              ]
+                          },
+                          "example": {
+                              "database_id": "xK5gnMSRxHLA",
+                              "name": "hello"
+                          }
+                      }
+                  }
+              },
+              "responses": {
+                  "200": {
+                      "description": "",
+                      "content": {
+                          "application/json": {
+                              "schema": {
+                                  "type": "object",
+                                  "properties": {
+                                      "code": {
+                                          "type": "integer",
+                                          "description": "状态码"
+                                      },
+                                      "message": {
+                                          "type": "string",
+                                          "description": "响应信息"
+                                      },
+                                      "data": {
+                                          "type": "object",
+                                          "properties": {
+                                              "id": {
+                                                  "type": "string",
+                                                  "description": "id"
+                                              }
+                                          },
+                                          "required": [
+                                              "id"
+                                          ],
+                                          "description": "数据"
+                                      }
+                                  },
+                                  "required": [
+                                      "code",
+                                      "message",
+                                      "data"
+                                  ]
+                              },
+                              "examples": {
+                                  "1": {
+                                      "summary": "成功示例",
+                                      "value": {
+                                          "code": 600,
+                                          "message": "success",
+                                          "data": {
+                                              "id": "8052ec08-c034-4816-8dd8-10ddb999c90c"
+                                          }
+                                      }
+                                  }
+                              }
+                          }
+                      },
+                      "headers": {}
+                  }
+              },
+              "security": []
+          }
+      },
+      "/api/v1/conversation/{conversation_id}": {
+          "get": {
+              "summary": "获取对话信息",
+              "deprecated": false,
+              "description": "通过 ID 获取对话信息。",
+              "tags": [],
+              "parameters": [
+                  {
+                      "name": "conversation_id",
+                      "in": "path",
+                      "description": "",
+                      "required": true,
+                      "example": "8052ec08-c034-4816-8dd8-10ddb999c90c",
+                      "schema": {
+                          "type": "string"
+                      }
+                  },
+                  {
+                      "name": "x-api-key",
+                      "in": "header",
+                      "description": "",
+                      "required": true,
+                      "example": "sk-LelkzwwFuKJuGJijZnduQzCorcecOvoHX4MGP-GxpObhw0c7mLc_p8m9hw118L8qIjlbE2ePcbs5hndxIVCkFw",
+                      "schema": {
+                          "type": "string"
+                      }
+                  }
+              ],
+              "requestBody": {
+                  "content": {
+                      "multipart/form-data": {
+                          "schema": {
+                              "type": "object",
+                              "properties": {}
+                          }
+                      }
+                  }
+              },
+              "responses": {
+                  "200": {
+                      "description": "",
+                      "content": {
+                          "application/json": {
+                              "schema": {
+                                  "type": "object",
+                                  "properties": {
+                                      "code": {
+                                          "type": "integer",
+                                          "description": "状态码"
+                                      },
+                                      "message": {
+                                          "type": "string",
+                                          "description": "响应信息"
+                                      },
+                                      "data": {
+                                          "type": "object",
+                                          "properties": {
+                                              "id": {
+                                                  "type": "string",
+                                                  "description": "对话id"
+                                              },
+                                              "name": {
+                                                  "type": "string",
+                                                  "description": "对话名称"
+                                              },
+                                              "database_id": {
+                                                  "type": "string",
+                                                  "description": "数据库id"
+                                              },
+                                              "user_id": {
+                                                  "type": "string",
+                                                  "description": "用户id"
+                                              },
+                                              "created_at": {
+                                                  "type": "number",
+                                                  "description": "创建时间"
+                                              },
+                                              "updated_at": {
+                                                  "type": "number",
+                                                  "description": "更新时间"
+                                              }
+                                          },
+                                          "required": [
+                                              "id",
+                                              "name",
+                                              "database_id",
+                                              "user_id",
+                                              "created_at",
+                                              "updated_at"
+                                          ]
+                                      }
+                                  },
+                                  "required": [
+                                      "code",
+                                      "message",
+                                      "data"
+                                  ]
+                              },
+                              "examples": {
+                                  "1": {
+                                      "summary": "成功示例",
+                                      "value": {
+                                          "code": 600,
+                                          "message": "success",
+                                          "data": {
+                                              "id": "8052ec08-c034-4816-8dd8-10ddb999c90c",
+                                              "name": "hello",
+                                              "database_id": "xK5gnMSRxHLA",
+                                              "user_id": "2d936649-2fbd-40ff-bc91-4ee2076550ac",
+                                              "created_at": 1728733882.713548,
+                                              "updated_at": 1728733882.713548
+                                          }
+                                      }
+                                  }
+                              }
+                          }
+                      },
+                      "headers": {}
+                  }
+              },
+              "security": []
+          },
+          "delete": {
+              "summary": "删除对话信息",
+              "deprecated": false,
+              "description": "删除指定 ID 的对话信息。",
+              "tags": [],
+              "parameters": [
+                  {
+                      "name": "conversation_id",
+                      "in": "path",
+                      "description": "",
+                      "required": true,
+                      "example": "8052ec08-c034-4816-8dd8-10ddb999c90c",
+                      "schema": {
+                          "type": "string"
+                      }
+                  },
+                  {
+                      "name": "x-api-key",
+                      "in": "header",
+                      "description": "",
+                      "required": true,
+                      "example": "sk-LelkzwwFuKJuGJijZnduQzCorcecOvoHX4MGP-GxpObhw0c7mLc_p8m9hw118L8qIjlbE2ePcbs5hndxIVCkFw",
+                      "schema": {
+                          "type": "string"
+                      }
+                  }
+              ],
+              "requestBody": {
+                  "content": {
+                      "application/x-www-form-urlencoded": {
+                          "schema": {
+                              "type": "object",
+                              "properties": {}
+                          }
+                      }
+                  }
+              },
+              "responses": {
+                  "200": {
+                      "description": "",
+                      "content": {
+                          "application/json": {
+                              "schema": {
+                                  "type": "object",
+                                  "properties": {}
+                              }
+                          }
+                      },
+                      "headers": {}
+                  }
+              },
+              "security": []
+          }
+      },
+      "/api/v1/conversation/list/data": {
+          "get": {
+              "summary": "获取用户对话列表",
+              "deprecated": false,
+              "description": "获取指定数据库 ID 下用户的对话列表。",
+              "tags": [],
+              "parameters": [
+                  {
+                      "name": "x-api-key",
+                      "in": "header",
+                      "description": "",
+                      "required": true,
+                      "example": "sk-LelkzwwFuKJuGJijZnduQzCorcecOvoHX4MGP-GxpObhw0c7mLc_p8m9hw118L8qIjlbE2ePcbs5hndxIVCkFw",
+                      "schema": {
+                          "type": "string"
+                      }
+                  }
+              ],
+              "requestBody": {
+                  "content": {
+                      "application/json": {
+                          "schema": {
+                              "type": "object",
+                              "properties": {
+                                  "database_id": {
+                                      "type": "string",
+                                      "description": "数据库id"
+                                  }
+                              },
+                              "required": [
+                                  "database_id"
+                              ]
+                          },
+                          "example": {
+                              "database_id": "xK5gnMSRxHLA"
+                          }
+                      }
+                  }
+              },
+              "responses": {
+                  "200": {
+                      "description": "",
+                      "content": {
+                          "application/json": {
+                              "schema": {
+                                  "type": "object",
+                                  "properties": {
+                                      "code": {
+                                          "type": "integer",
+                                          "description": "状态码"
+                                      },
+                                      "message": {
+                                          "type": "string",
+                                          "description": "响应信息"
+                                      },
+                                      "data": {
+                                          "type": "array",
+                                          "items": {
+                                              "type": "object",
+                                              "properties": {
+                                                  "id": {
+                                                      "type": "string",
+                                                      "description": "对话的 ID"
+                                                  },
+                                                  "name": {
+                                                      "type": "string",
+                                                      "description": "对话的名称"
+                                                  },
+                                                  "database_id": {
+                                                      "type": "string",
+                                                      "description": "数据库的 ID"
+                                                  },
+                                                  "user_id": {
+                                                      "type": "string",
+                                                      "description": "用户的 ID"
+                                                  },
+                                                  "created_at": {
+                                                      "type": "number",
+                                                      "description": "创建时间"
+                                                  },
+                                                  "updated_at": {
+                                                      "type": "number",
+                                                      "description": "更新时间"
+                                                  }
+                                              }
+                                          }
+                                      }
+                                  },
+                                  "required": [
+                                      "code",
+                                      "message",
+                                      "data"
+                                  ]
+                              },
+                              "examples": {
+                                  "1": {
+                                      "summary": "成功示例",
+                                      "value": {
+                                          "code": 600,
+                                          "message": "success",
+                                          "data": [
+                                              {
+                                                  "id": "8052ec08-c034-4816-8dd8-10ddb999c90c",
+                                                  "name": "hello",
+                                                  "database_id": "xK5gnMSRxHLA",
+                                                  "user_id": "2d936649-2fbd-40ff-bc91-4ee2076550ac",
+                                                  "created_at": 1728733882.713548,
+                                                  "updated_at": 1728733882.713548
+                                              }
+                                          ]
+                                      }
+                                  }
+                              }
+                          }
+                      },
+                      "headers": {}
+                  }
+              },
+              "security": []
+          }
       }
-    },
-    "/plants/{id}": {
-      "delete": {
-        "description": "Deletes a single plant based on the ID supplied",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "description": "ID of plant to delete",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int64"
-            }
-          }
-        ],
-        "responses": {
-          "204": {
-            "description": "Plant deleted",
-            "content": {}
-          },
-          "400": {
-            "description": "unexpected error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          }
-        }
-      }
-    }
   },
   "components": {
-    "schemas": {
-      "Plant": {
-        "required": [
-          "name"
-        ],
-        "type": "object",
-        "properties": {
-          "name": {
-            "description": "The name of the plant",
-            "type": "string"
-          },
-          "tag": {
-            "description": "Tag to specify the type",
-            "type": "string"
-          }
-        }
-      },
-      "NewPlant": {
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/Plant"
-          },
-          {
-            "required": [
-              "id"
-            ],
-            "type": "object",
-            "properties": {
-              "id": {
-                "description": "Identification number of the plant",
-                "type": "integer",
-                "format": "int64"
+      "schemas": {
+          "Plant": {
+              "required": [
+                  "name"
+              ],
+              "type": "object",
+              "properties": {
+                  "name": {
+                      "description": "The name of the plant",
+                      "type": "string"
+                  },
+                  "tag": {
+                      "description": "Tag to specify the type",
+                      "type": "string"
+                  }
               }
-            }
-          }
-        ]
-      },
-      "Error": {
-        "required": [
-          "error",
-          "message"
-        ],
-        "type": "object",
-        "properties": {
-          "error": {
-            "type": "integer",
-            "format": "int32"
           },
-          "message": {
-            "type": "string"
+          "NewPlant": {
+              "allOf": [
+                  {
+                      "$ref": "#/components/schemas/Plant"
+                  },
+                  {
+                      "required": [
+                          "id"
+                      ],
+                      "type": "object",
+                      "properties": {
+                          "id": {
+                              "description": "Identification number of the plant",
+                              "type": "integer",
+                              "format": "int64"
+                          }
+                      }
+                  }
+              ]
+          },
+          "Error": {
+              "required": [
+                  "error",
+                  "message"
+              ],
+              "type": "object",
+              "properties": {
+                  "error": {
+                      "type": "integer",
+                      "format": "int32"
+                  },
+                  "message": {
+                      "type": "string"
+                  }
+              }
           }
-        }
+      },
+      "securitySchemes": {
+          "bearerAuth": {
+              "type": "http",
+              "scheme": "bearer"
+          }
       }
-    },
-    "securitySchemes": {
-      "bearerAuth": {
-        "type": "http",
-        "scheme": "bearer"
-      }
-    }
   }
 }

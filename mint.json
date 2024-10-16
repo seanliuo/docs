@@ -93,7 +93,7 @@
       ]
     },
     {
-      "group": "Database (Knowledge base)",
+      "group": "数据库（知识库）接口",
       "pages": [
         "api-reference/endpoint/databases_create",
         "api-reference/endpoint/databases_getbyid",
@@ -106,8 +106,10 @@
     {
       "group": "会话接口",
       "pages": [
-        "api-reference/endpoint/get",
-        "api-reference/endpoint/post"
+        "api-reference/endpoint/conversation_create",
+        "api-reference/endpoint/conversation_delbyid",
+        "api-reference/endpoint/conversation_getbyid",
+        "api-reference/endpoint/conversation_getlist"
       ]
     },
     {
