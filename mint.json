@@ -33,6 +33,10 @@
     {
       "name": "API Demo",
       "url": "api-demo"
+    },
+    {
+      "name": "API Demo01",
+      "url": "api-demo01"
     }
   ],
   "anchors": [
@@ -98,6 +102,20 @@
         "api-demo/endpoint/lark",
         "api-demo/endpoint/api",
         "api-demo/endpoint/proluo"
+      ]
+    },
+    {
+      "group": "API Demo01",
+      "pages": [
+        "api-demo01/introduction"
+      ]
+    },
+    {
+      "group": "Endpoint Examples",
+      "pages": [
+        "api-demo01/endpoint/get",
+        "api-demo01/endpoint/create",
+        "api-demo01/endpoint/delete"
       ]
     }
   ],
