@@ -523,6 +523,86 @@
                     }
                 },
                 "security": []
+            },
+            "delete": {
+                "summary": "删除数据库信息",
+                "deprecated": false,
+                "description": "删除指定的数据库信息。",
+                "tags": [],
+                "parameters": [
+                    {
+                        "name": "database_id",
+                        "in": "path",
+                        "description": "数据库id",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "x-api-key",
+                        "in": "header",
+                        "description": "密钥",
+                        "required": false,
+                        "example": "sk-LelkzwwFuKJuGJijZnduQzCorcecOvoHX4MGP-GxpObhw0c7mLc_p8m9hw118L8qIjlbE2ePcbs5hndxIVCkFw",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {}
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "code": {
+                                            "type": "integer",
+                                            "description": "状态码"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "description": "响应信息"
+                                        },
+                                        "data": {
+                                            "type": "null",
+                                            "description": "空"
+                                        }
+                                    },
+                                    "required": [
+                                        "code",
+                                        "message",
+                                        "data"
+                                    ]
+                                },
+                                "examples": {
+                                    "1": {
+                                        "summary": "成功示例",
+                                        "value": {
+                                            "code": 600,
+                                            "message": "success",
+                                            "data": null
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "headers": {}
+                    }
+                },
+                "security": []
             }
         },
         "/api/v1/databases/list/data": {
