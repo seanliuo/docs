@@ -11,7 +11,7 @@
           "get": {
               "summary": "/plants",
               "deprecated": false,
-              "description": "Returns all plants from the system that the user has access to",
+              "description": "从系统中返回用户有权访问的所有植物",
               "tags": [],
               "parameters": [
                   {
