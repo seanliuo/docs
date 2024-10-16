@@ -21,7 +21,7 @@
     "paths": {
       "/plants123": {
         "get": {
-          "description": "Returns all plants from the system that the user has access to",
+          "description": "123123",
           "parameters": [
             {
               "name": "limit",
