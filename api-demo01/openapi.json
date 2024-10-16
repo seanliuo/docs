@@ -206,5 +206,9 @@
       },
       "securitySchemes": {}
   },
-  "servers": []
+  "servers": [
+    {
+      "url": "http://sandbox.mintlify.com"
+    }
+  ]
 }
