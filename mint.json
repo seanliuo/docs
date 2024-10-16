@@ -87,8 +87,8 @@
       "pages": [
         "api-reference/endpoint/get",
         "api-reference/endpoint/post",
-        "api-reference/endpoint/put",
         "api-reference/endpoint/del",
+        "api-reference/endpoint/get_pro",
         "api-reference/endpoint/post_demo"
       ]
     },
