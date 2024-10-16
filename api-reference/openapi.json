@@ -898,6 +898,393 @@
                 },
                 "security": []
             }
+        },
+        "/api/v1/chat/stream": {
+            "post": {
+                "summary": "聊天流式",
+                "deprecated": false,
+                "description": "与系统进行实时聊天，获取流式数据分析结果。",
+                "tags": [],
+                "parameters": [
+                    {
+                        "name": "Content-Type",
+                        "in": "header",
+                        "description": "",
+                        "required": true,
+                        "example": "application/json",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "",
+                        "required": false,
+                        "example": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MzEwNTY5NjQsInN1YiI6IjJkOTM2NjQ5LTJmYmQtNDBmZi1iYzkxLTRlZTIwNzY1NTBhYyJ9.CN67CGzdPPA2hYTF_wm9M2nrh07v3bGY92BmbiX1pko",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "x-api-key",
+                        "in": "header",
+                        "description": "",
+                        "required": true,
+                        "example": "sk-LelkzwwFuKJuGJijZnduQzCorcecOvoHX4MGP-GxpOYDXQmMRgRMjQzV0PMahsfzIkq7VyXzqLhrx4YF8Fyp5w",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "text": {
+                                        "type": "string",
+                                        "description": "聊天内容"
+                                    },
+                                    "session_id": {
+                                        "type": "string",
+                                        "description": "会话的唯一标识符"
+                                    }
+                                },
+                                "required": [
+                                    "text",
+                                    "session_id"
+                                ]
+                            },
+                            "example": "{\r\n    \"text\": \"我想知道现在知识库有哪些用户\", // 输入的文本\r\n    \"session_id\": \"8052ec08-c034-4816-8dd8-10ddb999c90c\"\r\n}"
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {}
+                                }
+                            }
+                        },
+                        "headers": {}
+                    }
+                },
+                "security": []
+            }
+        },
+        "/api/v1/chat": {
+            "post": {
+                "summary": "聊天",
+                "deprecated": false,
+                "description": "与系统进行聊天，并获取相关数据分析结果。",
+                "tags": [],
+                "parameters": [
+                    {
+                        "name": "Content-Type",
+                        "in": "header",
+                        "description": "",
+                        "required": true,
+                        "example": "application/json",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "x-api-key",
+                        "in": "header",
+                        "description": "",
+                        "required": true,
+                        "example": "sk-LelkzwwFuKJuGJijZnduQzCorcecOvoHX4MGP-GxpObhw0c7mLc_p8m9hw118L8qIjlbE2ePcbs5hndxIVCkFw",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "text": {
+                                        "type": "string",
+                                        "description": "聊天内容"
+                                    },
+                                    "session_id": {
+                                        "type": "string",
+                                        "description": "会话的唯一标识符"
+                                    }
+                                },
+                                "required": [
+                                    "text",
+                                    "session_id"
+                                ]
+                            },
+                            "example": "{\r\n    \"text\": \"我想知道现在知识库有哪些用户\", // 输入的文本\r\n    \"session_id\": \"5d25fcde-eb4f-4af1-a2ad-c7a1aa68c20b\"\r\n}"
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "code": {
+                                            "type": "integer",
+                                            "description": "状态码"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "description": "响应信息"
+                                        },
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "chart_data": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "type": {
+                                                            "type": "string"
+                                                        },
+                                                        "data": {
+                                                            "type": "object",
+                                                            "properties": {
+                                                                "labels": {
+                                                                    "type": "array",
+                                                                    "items": {
+                                                                        "type": "string"
+                                                                    }
+                                                                },
+                                                                "datasets": {
+                                                                    "type": "array",
+                                                                    "items": {
+                                                                        "type": "object",
+                                                                        "properties": {
+                                                                            "label": {
+                                                                                "type": "string"
+                                                                            },
+                                                                            "data": {
+                                                                                "type": "array",
+                                                                                "items": {
+                                                                                    "type": "integer"
+                                                                                }
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                }
+                                                            },
+                                                            "required": [
+                                                                "labels",
+                                                                "datasets"
+                                                            ]
+                                                        },
+                                                        "options": {
+                                                            "type": "object",
+                                                            "properties": {
+                                                                "responsive": {
+                                                                    "type": "boolean"
+                                                                },
+                                                                "plugins": {
+                                                                    "type": "object",
+                                                                    "properties": {
+                                                                        "legend": {
+                                                                            "type": "object",
+                                                                            "properties": {
+                                                                                "position": {
+                                                                                    "type": "string"
+                                                                                }
+                                                                            },
+                                                                            "required": [
+                                                                                "position"
+                                                                            ]
+                                                                        },
+                                                                        "title": {
+                                                                            "type": "object",
+                                                                            "properties": {
+                                                                                "display": {
+                                                                                    "type": "boolean"
+                                                                                },
+                                                                                "text": {
+                                                                                    "type": "string"
+                                                                                }
+                                                                            },
+                                                                            "required": [
+                                                                                "display",
+                                                                                "text"
+                                                                            ]
+                                                                        }
+                                                                    },
+                                                                    "required": [
+                                                                        "legend",
+                                                                        "title"
+                                                                    ]
+                                                                },
+                                                                "scales": {
+                                                                    "type": "object",
+                                                                    "properties": {
+                                                                        "x": {
+                                                                            "type": "object",
+                                                                            "properties": {
+                                                                                "display": {
+                                                                                    "type": "boolean"
+                                                                                },
+                                                                                "title": {
+                                                                                    "type": "object",
+                                                                                    "properties": {
+                                                                                        "display": {
+                                                                                            "type": "boolean"
+                                                                                        },
+                                                                                        "text": {
+                                                                                            "type": "string"
+                                                                                        }
+                                                                                    },
+                                                                                    "required": [
+                                                                                        "display",
+                                                                                        "text"
+                                                                                    ]
+                                                                                }
+                                                                            },
+                                                                            "required": [
+                                                                                "display",
+                                                                                "title"
+                                                                            ]
+                                                                        },
+                                                                        "y": {
+                                                                            "type": "object",
+                                                                            "properties": {
+                                                                                "display": {
+                                                                                    "type": "boolean"
+                                                                                },
+                                                                                "title": {
+                                                                                    "type": "object",
+                                                                                    "properties": {
+                                                                                        "display": {
+                                                                                            "type": "boolean"
+                                                                                        },
+                                                                                        "text": {
+                                                                                            "type": "string"
+                                                                                        }
+                                                                                    },
+                                                                                    "required": [
+                                                                                        "display",
+                                                                                        "text"
+                                                                                    ]
+                                                                                }
+                                                                            },
+                                                                            "required": [
+                                                                                "display",
+                                                                                "title"
+                                                                            ]
+                                                                        }
+                                                                    },
+                                                                    "required": [
+                                                                        "x",
+                                                                        "y"
+                                                                    ]
+                                                                }
+                                                            },
+                                                            "required": [
+                                                                "responsive",
+                                                                "plugins",
+                                                                "scales"
+                                                            ]
+                                                        }
+                                                    },
+                                                    "required": [
+                                                        "type",
+                                                        "data",
+                                                        "options"
+                                                    ]
+                                                },
+                                                "text": {
+                                                    "type": "string"
+                                                }
+                                            },
+                                            "required": [
+                                                "chart_data",
+                                                "text"
+                                            ],
+                                            "description": "返回的数据，包括图表和文本"
+                                        }
+                                    },
+                                    "required": [
+                                        "code",
+                                        "message",
+                                        "data"
+                                    ]
+                                },
+                                "examples": {
+                                    "1": {
+                                        "summary": "成功示例",
+                                        "value": {
+                                            "code": 600,
+                                            "message": "success",
+                                            "data": {
+                                                "chart_data": {
+                                                    "type": "bar",
+                                                    "data": {
+                                                        "labels": [
+                                                            "Rg91sWb5"
+                                                        ],
+                                                        "datasets": [
+                                                            {
+                                                                "label": "Users",
+                                                                "data": [
+                                                                    1
+                                                                ]
+                                                            }
+                                                        ]
+                                                    },
+                                                    "options": {
+                                                        "responsive": true,
+                                                        "plugins": {
+                                                            "legend": {
+                                                                "position": "top"
+                                                            },
+                                                            "title": {
+                                                                "display": true,
+                                                                "text": "Active Users"
+                                                            }
+                                                        },
+                                                        "scales": {
+                                                            "x": {
+                                                                "display": true,
+                                                                "title": {
+                                                                    "display": true,
+                                                                    "text": "User ID"
+                                                                }
+                                                            },
+                                                            "y": {
+                                                                "display": true,
+                                                                "title": {
+                                                                    "display": true,
+                                                                    "text": "Count"
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                },
+                                                "text": "根据当前检索到的数据，知识库中当前活跃用户的信息如下：\n\n- **用户ID**：Rg91sWb5\n- **邮箱**：123@qq.com\n- **用户名**：zhou\n\n### 数据分析\n- 图表类型：条形图\n- 图表名称：活跃用户（Active Users）\n- X轴：用户ID\n- Y轴：用户数量\n- 数据集显示当前活跃用户的数量为1。\n\n### 见解\n当前的知识库用户数据有限，仅显示了一名活跃用户。如果需要进一步分析或扩展更多用户信息，建议检查数据源是否完整并确认检索条件是否准确。"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "headers": {}
+                    }
+                },
+                "security": []
+            }
         }
     },
     "components": {

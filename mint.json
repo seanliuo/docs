@@ -115,8 +115,8 @@
     {
       "group": "Chat接口",
       "pages": [
-        "api-reference/endpoint/get",
-        "api-reference/endpoint/post"
+        "api-reference/endpoint/chat_",
+        "api-reference/endpoint/chat_stream"
       ]
     }
   ],
