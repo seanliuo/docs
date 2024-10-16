@@ -6,6 +6,11 @@
       "version": "1.0.0"
   },
   "tags": [],
+  "security": [
+    {
+      "bearerAuth": []
+    }
+  ],
   "paths": {
       "/plants123": {
           "get": {
