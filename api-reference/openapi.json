@@ -654,14 +654,6 @@
                                             "message": "success",
                                             "data": null
                                         }
-                                    },
-                                    "2": {
-                                        "summary": "成功示例",
-                                        "value": {
-                                            "code": 700,
-                                            "message": "Invalid database_type. Must be 'mysql' or 'postgresql'",
-                                            "data": null
-                                        }
                                     }
                                 }
                             }
@@ -740,14 +732,6 @@
                                         "value": {
                                             "code": 600,
                                             "message": "success",
-                                            "data": null
-                                        }
-                                    },
-                                    "2": {
-                                        "summary": "成功示例",
-                                        "value": {
-                                            "code": 700,
-                                            "message": "error xxx",
                                             "data": null
                                         }
                                     }
@@ -913,14 +897,6 @@
                                                 }
                                             ]
                                         }
-                                    },
-                                    "2": {
-                                        "summary": "成功示例",
-                                        "value": {
-                                            "code": 700,
-                                            "message": "Failed to retrieve database list",
-                                            "data": null
-                                        }
                                     }
                                 }
                             }
@@ -993,14 +969,6 @@
                                             "code": 600,
                                             "message": "Connection successful",
                                             "data": true
-                                        }
-                                    },
-                                    "2": {
-                                        "summary": "成功示例",
-                                        "value": {
-                                            "code": 700,
-                                            "message": "Database connection failed",
-                                            "data": false
                                         }
                                     }
                                 }
