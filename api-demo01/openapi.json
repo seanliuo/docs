@@ -21,7 +21,7 @@
   "paths": {
     "/plants123": {
       "get": {
-        "description": "Returns all plants from the system that the user has access to",
+        "description": "从系统中返回用户有权访问的所有植物",
         "parameters": [
           {
             "name": "limit",
@@ -60,7 +60,7 @@
         }
       },
       "post": {
-        "description": "Creates a new plant in the store",
+        "description": "在商店中创建一个新植物",
         "requestBody": {
           "description": "Plant to add to the store",
           "content": {
