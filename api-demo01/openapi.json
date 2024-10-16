@@ -52,7 +52,11 @@
                       "headers": {}
                   }
               },
-              "security": []
+              "security": [
+                {
+                  "bearerAuth": []
+                }
+              ]
           },
           "post": {
               "summary": "/plants",
