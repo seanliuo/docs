@@ -179,37 +179,43 @@
                                 "type": "object",
                                 "properties": {
                                     "name": {
-                                        "type": "string"
+                                        "type": "string",
+                                        "description": "知识库名称"
                                     },
                                     "description": {
-                                        "type": "string"
+                                        "type": "string",
+                                        "description": "知识库描述"
                                     },
                                     "prompt": {
-                                        "type": "string"
+                                        "type": "string",
+                                        "description": "prompt设定"
                                     },
                                     "database_name": {
-                                        "type": "string"
+                                        "type": "string",
+                                        "description": "数据库名称"
                                     },
                                     "database_type": {
-                                        "type": "string"
+                                        "type": "string",
+                                        "description": "数据库类型，如：MySQL，PostgreSQL等"
                                     },
                                     "hostname": {
-                                        "type": "string"
+                                        "type": "string",
+                                        "description": "数据库主机名或IP地址"
                                     },
                                     "port": {
-                                        "type": "integer"
+                                        "type": "integer",
+                                        "description": "数据库端口号"
                                     },
                                     "username": {
-                                        "type": "string"
+                                        "type": "string",
+                                        "description": "链接数据库的用户名"
                                     },
                                     "password": {
-                                        "type": "string"
+                                        "type": "string",
+                                        "description": "数据库密码，应存储加密后的密码哈希"
                                     }
                                 },
                                 "required": [
-                                    "name",
-                                    "description",
-                                    "prompt",
                                     "database_name",
                                     "database_type",
                                     "hostname",
