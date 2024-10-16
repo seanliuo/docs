@@ -524,6 +524,169 @@
                 },
                 "security": []
             }
+        },
+        "/api/v1/databases/list/data": {
+            "get": {
+                "summary": "获取数据库列表接口",
+                "deprecated": false,
+                "description": "",
+                "tags": [],
+                "parameters": [
+                    {
+                        "name": "x-api-key",
+                        "in": "header",
+                        "description": "",
+                        "required": true,
+                        "example": "sk-LelkzwwFuKJuGJijZnduQzCorcecOvoHX4MGP-GxpObhw0c7mLc_p8m9hw118L8qIjlbE2ePcbs5hndxIVCkFw",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "code": {
+                                            "type": "integer"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "id": {
+                                                        "type": "string",
+                                                        "description": "唯一标识符，作为主键"
+                                                    },
+                                                    "user_id": {
+                                                        "type": "string",
+                                                        "description": "关联的用户ID"
+                                                    },
+                                                    "name": {
+                                                        "type": "string",
+                                                        "description": "知识库名字"
+                                                    },
+                                                    "description": {
+                                                        "type": "string",
+                                                        "description": "知识库描述"
+                                                    },
+                                                    "prompt": {
+                                                        "type": "string",
+                                                        "description": "prompt设定"
+                                                    },
+                                                    "database_name": {
+                                                        "type": "string",
+                                                        "description": "数据库名称"
+                                                    },
+                                                    "database_type": {
+                                                        "type": "string",
+                                                        "description": "数据库类型，如 MySQL, PostgreSQL"
+                                                    },
+                                                    "hostname": {
+                                                        "type": "string",
+                                                        "description": "数据库主机名或 IP 地址"
+                                                    },
+                                                    "port": {
+                                                        "type": "integer",
+                                                        "description": "数据库端口号"
+                                                    },
+                                                    "username": {
+                                                        "type": "string",
+                                                        "description": "连接数据库的用户名"
+                                                    },
+                                                    "created_at": {
+                                                        "type": "number",
+                                                        "description": "创建时间"
+                                                    },
+                                                    "updated_at": {
+                                                        "type": "number",
+                                                        "description": "更新时间"
+                                                    },
+                                                    "status": {
+                                                        "type": "boolean",
+                                                        "description": "数据库连接状态"
+                                                    }
+                                                },
+                                                "required": [
+                                                    "id",
+                                                    "user_id",
+                                                    "name",
+                                                    "description",
+                                                    "prompt",
+                                                    "database_name",
+                                                    "database_type",
+                                                    "hostname",
+                                                    "port",
+                                                    "username",
+                                                    "created_at",
+                                                    "updated_at",
+                                                    "status"
+                                                ]
+                                            }
+                                        }
+                                    },
+                                    "required": [
+                                        "code",
+                                        "message",
+                                        "data"
+                                    ]
+                                },
+                                "examples": {
+                                    "1": {
+                                        "summary": "成功示例",
+                                        "value": {
+                                            "code": 600,
+                                            "message": "success",
+                                            "data": [
+                                                {
+                                                    "id": "zyfyFJsiwudt",
+                                                    "user_id": "2d936649-2fbd-40ff-bc91-4ee2076550ac",
+                                                    "name": "hello",
+                                                    "description": "this is a knowledge base",
+                                                    "prompt": "",
+                                                    "database_name": "library",
+                                                    "database_type": "postgresql",
+                                                    "hostname": "localhost",
+                                                    "port": 5432,
+                                                    "username": "postgres",
+                                                    "created_at": 1728524158.594638,
+                                                    "updated_at": 1728524158.594638,
+                                                    "status": true
+                                                },
+                                                {
+                                                    "id": "xK5gnMSRxHLA",
+                                                    "user_id": "2d936649-2fbd-40ff-bc91-4ee2076550ac",
+                                                    "name": "hello",
+                                                    "description": "this is a knowledge base",
+                                                    "prompt": "",
+                                                    "database_name": "library",
+                                                    "database_type": "postgresql",
+                                                    "hostname": "localhost",
+                                                    "port": 5432,
+                                                    "username": "postgres",
+                                                    "created_at": 1728732298.829782,
+                                                    "updated_at": 1728732298.829782,
+                                                    "status": true
+                                                }
+                                            ]
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "headers": {}
+                    }
+                },
+                "security": []
+            }
         }
     },
     "components": {
