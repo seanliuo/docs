@@ -1,8 +1,8 @@
 {
     "openapi": "3.0.1",
     "info": {
-      "title": "OpenAPI Plant Store",
-      "description": "A sample API that uses a plant store as an example to demonstrate features in the OpenAPI specification",
+      "title": "Combined Plant and Database API",
+      "description": "A sample API that combines plant management and database operations.",
       "license": {
         "name": "MIT"
       },
@@ -21,7 +21,7 @@
     "paths": {
       "/plants123": {
         "get": {
-          "description": "123123",
+          "description": "Returns all plants from the system that the user has access to",
           "parameters": [
             {
               "name": "limit",
@@ -74,7 +74,7 @@
           },
           "responses": {
             "200": {
-              "description": "plant response",
+              "description": "Plant response",
               "content": {
                 "application/json": {
                   "schema": {
@@ -84,7 +84,7 @@
               }
             },
             "400": {
-              "description": "unexpected error",
+              "description": "Unexpected error",
               "content": {
                 "application/json": {
                   "schema": {
@@ -117,11 +117,183 @@
               "content": {}
             },
             "400": {
-              "description": "unexpected error",
+              "description": "Unexpected error",
               "content": {
                 "application/json": {
                   "schema": {
                     "$ref": "#/components/schemas/Error"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api/v1/databases/{database_id}": {
+        "get": {
+          "summary": "获取数据库信息",
+          "description": "通过数据库 ID 获取数据库信息。",
+          "parameters": [
+            {
+              "name": "database_id",
+              "in": "path",
+              "description": "数据库的唯一标识符",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "x-api-key",
+              "in": "header",
+              "description": "",
+              "required": false,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "code": {
+                        "type": "integer",
+                        "description": "状态码"
+                      },
+                      "message": {
+                        "type": "string",
+                        "description": "提示信息"
+                      },
+                      "data": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "string",
+                            "description": "唯一标识符，作为主键"
+                          },
+                          "user_id": {
+                            "type": "string",
+                            "description": "关联的用户ID"
+                          },
+                          "name": {
+                            "type": "string",
+                            "description": "知识库名字"
+                          },
+                          "description": {
+                            "type": "string",
+                            "description": "知识库描述"
+                          },
+                          "prompt": {
+                            "type": "string",
+                            "description": "prompt设定"
+                          },
+                          "database_name": {
+                            "type": "string",
+                            "description": "数据库名称"
+                          },
+                          "database_type": {
+                            "type": "string",
+                            "description": "数据库类型，如 MySQL, PostgreSQL"
+                          },
+                          "hostname": {
+                            "type": "string",
+                            "description": "数据库主机名或 IP 地址"
+                          },
+                          "port": {
+                            "type": "integer",
+                            "description": "数据库端口号"
+                          },
+                          "username": {
+                            "type": "string",
+                            "description": "连接数据库的用户名"
+                          },
+                          "created_at": {
+                            "type": "number",
+                            "description": "创建时间"
+                          },
+                          "updated_at": {
+                            "type": "number",
+                            "description": "更新时间"
+                          },
+                          "status": {
+                            "type": "boolean",
+                            "description": "数据库连接状态"
+                          }
+                        },
+                        "required": [
+                          "id",
+                          "user_id",
+                          "name",
+                          "description",
+                          "prompt",
+                          "database_name",
+                          "database_type",
+                          "hostname",
+                          "port",
+                          "username",
+                          "created_at",
+                          "updated_at",
+                          "status"
+                        ]
+                      }
+                    },
+                    "required": ["code", "message", "data"]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "delete": {
+          "summary": "删除数据库信息",
+          "description": "删除指定的数据库信息。",
+          "parameters": [
+            {
+              "name": "database_id",
+              "in": "path",
+              "description": "数据库id",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "x-api-key",
+              "in": "header",
+              "description": "密钥",
+              "required": false,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "code": {
+                        "type": "integer",
+                        "description": "状态码"
+                      },
+                      "message": {
+                        "type": "string",
+                        "description": "响应信息"
+                      },
+                      "data": {
+                        "type": "null",
+                        "description": "空"
+                      }
+                    },
+                    "required": ["code", "message", "data"]
                   }
                 }
               }
@@ -133,9 +305,7 @@
     "components": {
       "schemas": {
         "Plant": {
-          "required": [
-            "name"
-          ],
+          "required": ["name"],
           "type": "object",
           "properties": {
             "name": {
@@ -154,9 +324,7 @@
               "$ref": "#/components/schemas/Plant"
             },
             {
-              "required": [
-                "id"
-              ],
+              "required": ["id"],
               "type": "object",
               "properties": {
                 "id": {
@@ -169,10 +337,7 @@
           ]
         },
         "Error": {
-          "required": [
-            "error",
-            "message"
-          ],
+          "required": ["error", "message"],
           "type": "object",
           "properties": {
             "error": {
@@ -193,3 +358,4 @@
       }
     }
   }
+  
