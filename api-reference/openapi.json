@@ -1026,7 +1026,7 @@
                                     "session_id"
                                 ]
                             },
-                            "example": "{\r\n    \"text\": \"我想知道现在知识库有哪些用户\", // 输入的文本\r\n    \"session_id\": \"5d25fcde-eb4f-4af1-a2ad-c7a1aa68c20b\"\r\n}"
+                            "example": "{\r\n    \"text\": \"我想知道现在知识库有哪些用户？\", // 输入的文本\r\n    \"session_id\": \"5d25fcde-eb4f-4af1-a2ad-c7a1aa68c20b\"\r\n}"
                         }
                     }
                 },
