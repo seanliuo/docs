@@ -101,10 +101,5 @@
         "api-reference/endpoint/chat_stream"
       ]
     }
-  ],
-  "footerSocials": {
-    "x": "https://x.com/mintlify",
-    "github": "https://github.com/mintlify",
-    "linkedin": "https://linkedin.com/company/mintlify"
-  }
+  ]
 }
