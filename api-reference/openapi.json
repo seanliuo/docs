@@ -257,7 +257,7 @@
         },
         "/api/v1/databases": {
             "post": {
-                "summary": "创建数据库",
+                "summary": "/api/v1/databases",
                 "deprecated": false,
                 "description": "创建新的数据库信息。",
                 "tags": [],
