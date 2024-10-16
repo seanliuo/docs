@@ -1,361 +1,306 @@
 {
     "openapi": "3.0.1",
     "info": {
-      "title": "Combined Plant and Database API",
-      "description": "A sample API that combines plant management and database operations.",
-      "license": {
-        "name": "MIT"
-      },
-      "version": "1.0.0"
+        "title": "OpenAPI Plant Store",
+        "description": "A sample API that uses a plant store as an example to demonstrate features in the OpenAPI specification",
+        "license": {
+            "name": "MIT"
+        },
+        "version": "1.0.0"
     },
     "servers": [
-      {
-        "url": "http://sandbox.mintlify.com"
-      }
+        {
+            "url": "http://sandbox.mintlify.com"
+        }
     ],
     "security": [
-      {
-        "bearerAuth": []
-      }
+        {
+            "bearerAuth": []
+        }
     ],
     "paths": {
-      "/plants123": {
-        "get": {
-          "description": "Returns all plants from the system that the user has access to",
-          "parameters": [
-            {
-              "name": "limit",
-              "in": "query",
-              "description": "The maximum number of results to return",
-              "schema": {
-                "type": "integer",
-                "format": "int32"
-              }
-            }
-          ],
-          "responses": {
-            "200": {
-              "description": "Plant response",
-              "content": {
-                "application/json": {
-                  "schema": {
-                    "type": "array",
-                    "items": {
-                      "$ref": "#/components/schemas/Plant"
-                    }
-                  }
-                }
-              }
-            },
-            "400": {
-              "description": "Unexpected error",
-              "content": {
-                "application/json": {
-                  "schema": {
-                    "$ref": "#/components/schemas/Error"
-                  }
-                }
-              }
-            }
-          }
-        },
-        "post": {
-          "description": "Creates a new plant in the store",
-          "requestBody": {
-            "description": "Plant to add to the store",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/NewPlant"
-                }
-              }
-            },
-            "required": true
-          },
-          "responses": {
-            "200": {
-              "description": "Plant response",
-              "content": {
-                "application/json": {
-                  "schema": {
-                    "$ref": "#/components/schemas/Plant"
-                  }
-                }
-              }
-            },
-            "400": {
-              "description": "Unexpected error",
-              "content": {
-                "application/json": {
-                  "schema": {
-                    "$ref": "#/components/schemas/Error"
-                  }
-                }
-              }
-            }
-          }
-        }
-      },
-      "/plants/{id}": {
-        "delete": {
-          "description": "Deletes a single plant based on the ID supplied",
-          "parameters": [
-            {
-              "name": "id",
-              "in": "path",
-              "description": "ID of plant to delete",
-              "required": true,
-              "schema": {
-                "type": "integer",
-                "format": "int64"
-              }
-            }
-          ],
-          "responses": {
-            "204": {
-              "description": "Plant deleted",
-              "content": {}
-            },
-            "400": {
-              "description": "Unexpected error",
-              "content": {
-                "application/json": {
-                  "schema": {
-                    "$ref": "#/components/schemas/Error"
-                  }
-                }
-              }
-            }
-          }
-        }
-      },
-      "/api/v1/databases/{database_id}": {
-        "get": {
-          "summary": "获取数据库信息",
-          "description": "通过数据库 ID 获取数据库信息。",
-          "parameters": [
-            {
-              "name": "database_id",
-              "in": "path",
-              "description": "数据库的唯一标识符",
-              "required": true,
-              "schema": {
-                "type": "string"
-              }
-            },
-            {
-              "name": "x-api-key",
-              "in": "header",
-              "description": "",
-              "required": false,
-              "schema": {
-                "type": "string"
-              }
-            }
-          ],
-          "responses": {
-            "200": {
-              "description": "",
-              "content": {
-                "application/json": {
-                  "schema": {
-                    "type": "object",
-                    "properties": {
-                      "code": {
-                        "type": "integer",
-                        "description": "状态码"
-                      },
-                      "message": {
-                        "type": "string",
-                        "description": "提示信息"
-                      },
-                      "data": {
-                        "type": "object",
-                        "properties": {
-                          "id": {
-                            "type": "string",
-                            "description": "唯一标识符，作为主键"
-                          },
-                          "user_id": {
-                            "type": "string",
-                            "description": "关联的用户ID"
-                          },
-                          "name": {
-                            "type": "string",
-                            "description": "知识库名字"
-                          },
-                          "description": {
-                            "type": "string",
-                            "description": "知识库描述"
-                          },
-                          "prompt": {
-                            "type": "string",
-                            "description": "prompt设定"
-                          },
-                          "database_name": {
-                            "type": "string",
-                            "description": "数据库名称"
-                          },
-                          "database_type": {
-                            "type": "string",
-                            "description": "数据库类型，如 MySQL, PostgreSQL"
-                          },
-                          "hostname": {
-                            "type": "string",
-                            "description": "数据库主机名或 IP 地址"
-                          },
-                          "port": {
+        "/plants123": {
+            "get": {
+                "description": "Returns all plants from the system that the user has access to",
+                "parameters": [
+                    {
+                        "name": "limit",
+                        "in": "query",
+                        "description": "The maximum number of results to return",
+                        "schema": {
                             "type": "integer",
-                            "description": "数据库端口号"
-                          },
-                          "username": {
-                            "type": "string",
-                            "description": "连接数据库的用户名"
-                          },
-                          "created_at": {
-                            "type": "number",
-                            "description": "创建时间"
-                          },
-                          "updated_at": {
-                            "type": "number",
-                            "description": "更新时间"
-                          },
-                          "status": {
-                            "type": "boolean",
-                            "description": "数据库连接状态"
-                          }
-                        },
-                        "required": [
-                          "id",
-                          "user_id",
-                          "name",
-                          "description",
-                          "prompt",
-                          "database_name",
-                          "database_type",
-                          "hostname",
-                          "port",
-                          "username",
-                          "created_at",
-                          "updated_at",
-                          "status"
-                        ]
-                      }
+                            "format": "int32"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Plant response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Plant"
+                                    }
+                                }
+                            }
+                        }
                     },
-                    "required": ["code", "message", "data"]
-                  }
+                    "400": {
+                        "description": "Unexpected error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        }
+                    }
                 }
-              }
-            }
-          }
-        },
-        "delete": {
-          "summary": "删除数据库信息",
-          "description": "删除指定的数据库信息。",
-          "parameters": [
-            {
-              "name": "database_id",
-              "in": "path",
-              "description": "数据库id",
-              "required": true,
-              "schema": {
-                "type": "string"
-              }
             },
-            {
-              "name": "x-api-key",
-              "in": "header",
-              "description": "密钥",
-              "required": false,
-              "schema": {
-                "type": "string"
-              }
-            }
-          ],
-          "responses": {
-            "200": {
-              "description": "",
-              "content": {
-                "application/json": {
-                  "schema": {
-                    "type": "object",
-                    "properties": {
-                      "code": {
-                        "type": "integer",
-                        "description": "状态码"
-                      },
-                      "message": {
-                        "type": "string",
-                        "description": "响应信息"
-                      },
-                      "data": {
-                        "type": "null",
-                        "description": "空"
-                      }
+            "post": {
+                "description": "Creates a new plant in the store",
+                "requestBody": {
+                    "description": "Plant to add to the store",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/NewPlant"
+                            }
+                        }
                     },
-                    "required": ["code", "message", "data"]
-                  }
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "plant response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Plant"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "unexpected error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        }
+                    }
                 }
-              }
             }
-          }
+        },
+        "/plants/{id}": {
+            "delete": {
+                "description": "Deletes a single plant based on the ID supplied",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of plant to delete",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Plant deleted",
+                        "content": {}
+                    },
+                    "400": {
+                        "description": "unexpected error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/query": {
+            "get": {
+                "summary": "查询普罗米修斯",
+                "deprecated": false,
+                "description": "",
+                "tags": [],
+                "parameters": [
+                    {
+                        "name": "query",
+                        "in": "query",
+                        "description": "",
+                        "required": false,
+                        "example": "sort_desc(sum(increase(kong_ai_tokens_total{token_type=\"total_tokens\"}[90d])) by (project_id))",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "type": "string"
+                                        },
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "resultType": {
+                                                    "type": "string"
+                                                },
+                                                "result": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "object",
+                                                        "properties": {
+                                                            "metric": {
+                                                                "type": "object",
+                                                                "properties": {
+                                                                    "project_id": {
+                                                                        "type": "string"
+                                                                    }
+                                                                },
+                                                                "required": [
+                                                                    "project_id"
+                                                                ]
+                                                            },
+                                                            "value": {
+                                                                "type": "array",
+                                                                "items": {
+                                                                    "oneOf": [
+                                                                        {
+                                                                            "type": "number"
+                                                                        },
+                                                                        {
+                                                                            "type": "string"
+                                                                        }
+                                                                    ]
+                                                                }
+                                                            }
+                                                        },
+                                                        "required": [
+                                                            "metric",
+                                                            "value"
+                                                        ]
+                                                    }
+                                                }
+                                            },
+                                            "required": [
+                                                "resultType",
+                                                "result"
+                                            ]
+                                        }
+                                    },
+                                    "required": [
+                                        "status",
+                                        "data"
+                                    ]
+                                }
+                            }
+                        },
+                        "headers": {}
+                    },
+                    "400": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "hh": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "required": [
+                                        "hh",
+                                        "01JAA4N7PZZKK6VWV5A566PV06"
+                                    ]
+                                }
+                            }
+                        },
+                        "headers": {}
+                    }
+                },
+                "security": []
+            }
         }
-      }
     },
     "components": {
-      "schemas": {
-        "Plant": {
-          "required": ["name"],
-          "type": "object",
-          "properties": {
-            "name": {
-              "description": "The name of the plant",
-              "type": "string"
-            },
-            "tag": {
-              "description": "Tag to specify the type",
-              "type": "string"
-            }
-          }
-        },
-        "NewPlant": {
-          "allOf": [
-            {
-              "$ref": "#/components/schemas/Plant"
-            },
-            {
-              "required": ["id"],
-              "type": "object",
-              "properties": {
-                "id": {
-                  "description": "Identification number of the plant",
-                  "type": "integer",
-                  "format": "int64"
+        "schemas": {
+            "Plant": {
+                "required": [
+                    "name"
+                ],
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "description": "The name of the plant",
+                        "type": "string"
+                    },
+                    "tag": {
+                        "description": "Tag to specify the type",
+                        "type": "string"
+                    }
                 }
-              }
-            }
-          ]
-        },
-        "Error": {
-          "required": ["error", "message"],
-          "type": "object",
-          "properties": {
-            "error": {
-              "type": "integer",
-              "format": "int32"
             },
-            "message": {
-              "type": "string"
+            "NewPlant": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/Plant"
+                    },
+                    {
+                        "required": [
+                            "id"
+                        ],
+                        "type": "object",
+                        "properties": {
+                            "id": {
+                                "description": "Identification number of the plant",
+                                "type": "integer",
+                                "format": "int64"
+                            }
+                        }
+                    }
+                ]
+            },
+            "Error": {
+                "required": [
+                    "error",
+                    "message"
+                ],
+                "type": "object",
+                "properties": {
+                    "error": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "message": {
+                        "type": "string"
+                    }
+                }
             }
-          }
+        },
+        "securitySchemes": {
+            "bearerAuth": {
+                "type": "http",
+                "scheme": "bearer"
+            }
         }
-      },
-      "securitySchemes": {
-        "bearerAuth": {
-          "type": "http",
-          "scheme": "bearer"
-        }
-      }
     }
-  }
-  
+}
