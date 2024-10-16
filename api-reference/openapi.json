@@ -148,25 +148,15 @@
             "post": {
                 "summary": "测试转发01",
                 "deprecated": false,
-                "description": "",
+                "description": "创建新的数据库信息。",
                 "tags": [],
                 "parameters": [
                     {
-                        "name": "Content-Type",
+                        "name": "x-api-key",
                         "in": "header",
                         "description": "",
                         "required": true,
-                        "example": "application/json",
-                        "schema": {
-                            "type": "string"
-                        }
-                    },
-                    {
-                        "name": "api-key",
-                        "in": "header",
-                        "description": "",
-                        "required": true,
-                        "example": "fl-zhixingqidian2099",
+                        "example": "sk-LelkzwwFuKJuGJijZnduQzCorcecOvoHX4MGP-GxpObhw0c7mLc_p8m9hw118L8qIjlbE2ePcbs5hndxIVCkFw",
                         "schema": {
                             "type": "string"
                         }
