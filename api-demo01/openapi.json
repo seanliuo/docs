@@ -7,9 +7,9 @@
   },
   "tags": [],
   "paths": {
-      "/plants": {
+      "/plants123": {
           "get": {
-              "summary": "/plants",
+              "summary": "/plants123",
               "deprecated": false,
               "description": "从系统中返回用户有权访问的所有植物",
               "tags": [],
