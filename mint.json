@@ -85,9 +85,10 @@
     {
       "group": "Endpoint Examples",
       "pages": [
-        "api-reference/endpoint/lark",
-        "api-reference/endpoint/api",
-        "api-reference/endpoint/proluo"
+        "api-reference/endpoint/get",
+        "api-reference/endpoint/post",
+        "api-reference/endpoint/put",
+        "api-reference/endpoint/del"
       ]
     },
     {
