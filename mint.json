@@ -91,31 +91,27 @@
       ]
     },
     {
-      "group": "API Demo",
+      "group": "数据库（知识库）接口",
       "pages": [
-        "api-demo/introduction"
+        "api-reference/endpoint/lark",
+        "api-reference/endpoint/api",
+        "api-reference/endpoint/proluo"
       ]
     },
     {
-      "group": "Endpoint Examples",
+      "group": "会话接口",
       "pages": [
-        "api-reference/endpoint/get",
-        "api-reference/endpoint/create",
-        "api-reference/endpoint/delete"
+        "api-reference/endpoint/lark",
+        "api-reference/endpoint/api",
+        "api-reference/endpoint/proluo"
       ]
     },
     {
-      "group": "API Demo01",
+      "group": "Chat接口",
       "pages": [
-        "api-demo01/introduction"
-      ]
-    },
-    {
-      "group": "Endpoint Examples",
-      "pages": [
-        "api-demo01/endpoint/get",
-        "api-demo01/endpoint/create",
-        "api-demo01/endpoint/delete"
+        "api-reference/endpoint/lark",
+        "api-reference/endpoint/api",
+        "api-reference/endpoint/proluo"
       ]
     }
   ],
