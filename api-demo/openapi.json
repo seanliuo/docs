@@ -1,186 +1,195 @@
 {
   "openapi": "3.0.1",
   "info": {
-    "title": "大大的测试",
-    "description": "",
+    "title": "OpenAPI Plant Store",
+    "description": "A sample API that uses a plant store as an example to demonstrate features in the OpenAPI specification",
+    "license": {
+      "name": "MIT"
+    },
     "version": "1.0.0"
   },
-  "tags": [],
+  "servers": [
+    {
+      "url": "http://sandbox.mintlify.com"
+    }
+  ],
+  "security": [
+    {
+      "bearerAuth": []
+    }
+  ],
   "paths": {
-    "/api/v1/run/fcf5a47d-1fdd-4ea7-baff-a8a2cb491dd5": {
-      "post": {
-        "summary": "lark推送调用情况flow-api",
-        "deprecated": false,
-        "description": "",
-        "tags": [],
+    "/plants": {
+      "get": {
+        "description": "Returns all plants from the system that the user has access to",
         "parameters": [
           {
-            "name": "stream",
+            "name": "limit",
             "in": "query",
-            "description": "",
-            "required": false,
-            "example": "false",
+            "description": "The maximum number of results to return",
             "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "x-api-key",
-            "in": "header",
-            "description": "",
-            "required": true,
-            "example": "sk-FxCmB7t52otlPX_OPqz7T4jVQdQNqHdX5Z-U5jOgOtI",
-            "schema": {
-              "type": "string"
+              "type": "integer",
+              "format": "int32"
             }
           }
         ],
+        "responses": {
+          "200": {
+            "description": "Plant response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Plant"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "description": "Creates a new plant in the store",
         "requestBody": {
+          "description": "Plant to add to the store",
           "content": {
             "application/json": {
               "schema": {
-                "type": "object",
-                "properties": {}
+                "$ref": "#/components/schemas/NewPlant"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "plant response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Plant"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
               }
             }
           }
-        },
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {}
-                }
-              }
-            },
-            "headers": {}
-          }
-        },
-        "security": []
+        }
       }
     },
-    "/api/v1/prometheus/assistant": {
-      "post": {
-        "summary": "api助手聊天",
-        "deprecated": false,
-        "description": "",
-        "tags": [],
-        "parameters": [],
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {}
-                }
-              }
-            },
-            "headers": {}
-          }
-        },
-        "security": []
-      }
-    },
-    "/api/v1/query": {
-      "get": {
-        "summary": "查询普罗米修斯",
-        "deprecated": false,
-        "description": "",
-        "tags": [],
+    "/plants/{id}": {
+      "delete": {
+        "description": "Deletes a single plant based on the ID supplied",
         "parameters": [
           {
-            "name": "query",
-            "in": "query",
-            "description": "",
-            "required": false,
-            "example": "sort_desc(sum(increase(kong_ai_tokens_total{token_type=\"total_tokens\"}[90d])) by (project_id))",
+            "name": "id",
+            "in": "path",
+            "description": "ID of plant to delete",
+            "required": true,
             "schema": {
-              "type": "string"
+              "type": "integer",
+              "format": "int64"
             }
           }
         ],
         "responses": {
-          "200": {
-            "description": "",
+          "204": {
+            "description": "Plant deleted",
+            "content": {}
+          },
+          "400": {
+            "description": "unexpected error",
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object",
-                  "properties": {
-                    "status": {
-                      "type": "string"
-                    },
-                    "data": {
-                      "type": "object",
-                      "properties": {
-                        "resultType": {
-                          "type": "string"
-                        },
-                        "result": {
-                          "type": "array",
-                          "items": {
-                            "type": "object",
-                            "properties": {
-                              "metric": {
-                                "type": "object",
-                                "properties": {
-                                  "project_id": {
-                                    "type": "string"
-                                  }
-                                },
-                                "required": [
-                                  "project_id"
-                                ]
-                              },
-                              "value": {
-                                "type": "array",
-                                "items": {
-                                  "oneOf": [
-                                    {
-                                      "type": "number"
-                                    },
-                                    {
-                                      "type": "string"
-                                    }
-                                  ]
-                                }
-                              }
-                            },
-                            "required": [
-                              "metric",
-                              "value"
-                            ]
-                          }
-                        }
-                      },
-                      "required": [
-                        "resultType",
-                        "result"
-                      ]
-                    }
-                  },
-                  "required": [
-                    "status",
-                    "data"
-                  ]
+                  "$ref": "#/components/schemas/Error"
                 }
               }
-            },
-            "headers": {}
+            }
           }
-        },
-        "security": []
+        }
       }
     }
   },
   "components": {
-    "schemas": {},
-    "securitySchemes": {}
-  },
-  "servers": []
+    "schemas": {
+      "Plant": {
+        "required": [
+          "name"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "description": "The name of the plant",
+            "type": "string"
+          },
+          "tag": {
+            "description": "Tag to specify the type",
+            "type": "string"
+          }
+        }
+      },
+      "NewPlant": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/Plant"
+          },
+          {
+            "required": [
+              "id"
+            ],
+            "type": "object",
+            "properties": {
+              "id": {
+                "description": "Identification number of the plant",
+                "type": "integer",
+                "format": "int64"
+              }
+            }
+          }
+        ]
+      },
+      "Error": {
+        "required": [
+          "error",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "message": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer"
+      }
+    }
+  }
 }
