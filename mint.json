@@ -105,12 +105,6 @@
       ]
     },
     {
-      "group": "API Demo01",
-      "pages": [
-        "api-demo01/introduction"
-      ]
-    },
-    {
       "group": "Endpoint Examples",
       "pages": [
         "api-demo01/endpoint/get",
