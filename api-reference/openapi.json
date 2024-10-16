@@ -229,7 +229,7 @@
                     }
                 },
                 "responses": {
-                    "400": {
+                    "200": {
                         "description": "",
                         "content": {
                             "application/json": {
@@ -276,6 +276,36 @@
                                             }
                                         }
                                     }
+                                }
+                            }
+                        },
+                        "headers": {}
+                    },
+                    "400": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "code": {
+                                            "type": "integer",
+                                            "description": "状态码"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "description": "响应信息"
+                                        },
+                                        "data": {
+                                            "type": "null",
+                                            "description": "空"
+                                        }
+                                    },
+                                    "required": [
+                                        "code",
+                                        "message",
+                                        "data"
+                                    ]
                                 }
                             }
                         },
