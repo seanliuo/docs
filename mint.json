@@ -89,7 +89,7 @@
         "api-reference/endpoint/post",
         "api-reference/endpoint/put",
         "api-reference/endpoint/del",
-        "api-reference/endpoint/forward"
+        "api-reference/endpoint/post_demo"
       ]
     },
     {
