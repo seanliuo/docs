@@ -85,9 +85,9 @@
     {
       "group": "Endpoint Examples",
       "pages": [
-        "api-reference/endpoint/get",
-        "api-reference/endpoint/create",
-        "api-reference/endpoint/delete"
+        "api-reference/endpoint/lark",
+        "api-reference/endpoint/api",
+        "api-reference/endpoint/proluo"
       ]
     },
     {
