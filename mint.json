@@ -99,9 +99,9 @@
     {
       "group": "Endpoint Examples",
       "pages": [
-        "api-demo/endpoint/lark",
-        "api-demo/endpoint/api",
-        "api-demo/endpoint/proluo"
+        "api-demo/endpoint/get",
+        "api-demo/endpoint/create",
+        "api-demo/endpoint/delete"
       ]
     },
     {
