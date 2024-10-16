@@ -92,7 +92,7 @@
       ]
     },
     {
-      "group": "数据库（知识库）接口",
+      "group": "Database (Knowledge base)",
       "pages": [
         "api-reference/endpoint/databases_create",
         "api-reference/endpoint/databases_getbyid",
