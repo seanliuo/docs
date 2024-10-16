@@ -144,7 +144,7 @@
                 "security": []
             }
         },
-        "/forward": {
+        "/api/v1/databases": {
             "post": {
                 "summary": "测试转发01",
                 "deprecated": false,
