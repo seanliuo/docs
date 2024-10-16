@@ -15,28 +15,10 @@
       "to": "#07C983"
     }
   },
-  "topbarLinks": [
-    {
-      "name": "Support",
-      "url": "mailto:hi@mintlify.com"
-    }
-  ],
-  "topbarCtaButton": {
-    "name": "Dashboard",
-    "url": "https://dashboard.mintlify.com"
-  },
   "tabs": [
     {
       "name": "API Reference",
       "url": "api-reference"
-    },
-    {
-      "name": "API Demo",
-      "url": "api-demo"
-    },
-    {
-      "name": "API Demo01",
-      "url": "api-demo01"
     }
   ],
   "anchors": [
