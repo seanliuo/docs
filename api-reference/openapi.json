@@ -658,7 +658,7 @@
                                     "2": {
                                         "summary": "成功示例",
                                         "value": {
-                                            "code": 700,
+                                            "code": 400,
                                             "message": "Invalid database_type. Must be 'mysql' or 'postgresql'",
                                             "data": null
                                         }
@@ -668,7 +668,7 @@
                         },
                         "headers": {}
                     },
-                    "700": {
+                    "400": {
                         "description": "",
                         "content": {
                             "application/json": {
@@ -776,7 +776,7 @@
                                     "2": {
                                         "summary": "成功示例",
                                         "value": {
-                                            "code": 700,
+                                            "code": 400,
                                             "message": "error xxx",
                                             "data": null
                                         }
@@ -786,7 +786,7 @@
                         },
                         "headers": {}
                     },
-                    "700": {
+                    "400": {
                         "description": "",
                         "content": {
                             "application/json": {
@@ -977,7 +977,7 @@
                                     "2": {
                                         "summary": "成功示例",
                                         "value": {
-                                            "code": 700,
+                                            "code": 400,
                                             "message": "Failed to retrieve database list",
                                             "data": null
                                         }
@@ -987,7 +987,7 @@
                         },
                         "headers": {}
                     },
-                    "700": {
+                    "400": {
                         "description": "",
                         "content": {
                             "application/json": {
@@ -1086,7 +1086,7 @@
                                     "2": {
                                         "summary": "成功示例",
                                         "value": {
-                                            "code": 700,
+                                            "code": 400,
                                             "message": "Database connection failed",
                                             "data": false
                                         }
@@ -1096,7 +1096,7 @@
                         },
                         "headers": {}
                     },
-                    "700": {
+                    "400": {
                         "description": "",
                         "content": {
                             "application/json": {
