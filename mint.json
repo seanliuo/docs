@@ -94,7 +94,7 @@
     {
       "group": "Database (Knowledge base)",
       "pages": [
-        "api-reference/endpoint/databases_create",
+        "api-reference/endpoint/databasescreate",
         "api-reference/endpoint/databases_getbyid",
         "api-reference/endpoint/databases_getlist",
         "api-reference/endpoint/databases_updbyid",
