@@ -105,17 +105,15 @@
     {
       "group": "会话接口",
       "pages": [
-        "api-reference/endpoint/lark",
-        "api-reference/endpoint/api",
-        "api-reference/endpoint/proluo"
+        "api-reference/endpoint/get",
+        "api-reference/endpoint/post"
       ]
     },
     {
       "group": "Chat接口",
       "pages": [
-        "api-reference/endpoint/lark",
-        "api-reference/endpoint/api",
-        "api-reference/endpoint/proluo"
+        "api-reference/endpoint/get",
+        "api-reference/endpoint/post"
       ]
     }
   ],
