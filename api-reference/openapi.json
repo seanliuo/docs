@@ -523,145 +523,6 @@
                     }
                 },
                 "security": []
-            },
-            "put": {
-                "summary": "更新数据库信息",
-                "deprecated": false,
-                "description": "更新指定数据库的信息。",
-                "tags": [],
-                "parameters": [
-                    {
-                        "name": "database_id",
-                        "in": "path",
-                        "description": "数据库id",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    },
-                    {
-                        "name": "x-api-key",
-                        "in": "header",
-                        "description": "密钥",
-                        "required": true,
-                        "example": "sk-LelkzwwFuKJuGJijZnduQzCorcecOvoHX4MGP-GxpObhw0c7mLc_p8m9hw118L8qIjlbE2ePcbs5hndxIVCkFw",
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                ],
-                "requestBody": {
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "type": "object",
-                                "properties": {
-                                    "name": {
-                                        "type": "string",
-                                        "description": "知识库名字"
-                                    },
-                                    "description": {
-                                        "type": "string",
-                                        "description": "知识库描述"
-                                    },
-                                    "prompt": {
-                                        "type": "string",
-                                        "description": "prompt设定"
-                                    },
-                                    "database_name": {
-                                        "type": "string",
-                                        "description": "数据库名称"
-                                    },
-                                    "database_type": {
-                                        "type": "string",
-                                        "description": "数据库类型，如 MySQL, PostgreSQL"
-                                    },
-                                    "hostname": {
-                                        "type": "string",
-                                        "description": "数据库主机名或 IP 地址"
-                                    },
-                                    "port": {
-                                        "type": "integer",
-                                        "description": "数据库端口号"
-                                    },
-                                    "username": {
-                                        "type": "string",
-                                        "description": "连接数据库的用户名"
-                                    },
-                                    "password": {
-                                        "type": "string",
-                                        "description": "数据库密码"
-                                    }
-                                },
-                                "required": [
-                                    "name",
-                                    "description",
-                                    "prompt",
-                                    "database_name",
-                                    "database_type",
-                                    "hostname",
-                                    "port",
-                                    "username",
-                                    "password"
-                                ]
-                            },
-                            "example": {
-                                "name": "hello",
-                                "description": "this is a knowledge base",
-                                "prompt": "you are a useful assistant.",
-                                "database_name": "library",
-                                "database_type": "postgresql",
-                                "hostname": "localhost",
-                                "port": 5432,
-                                "username": "postgres",
-                                "password": "baiyiyu"
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "200": {
-                        "description": "",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "object",
-                                    "properties": {
-                                        "code": {
-                                            "type": "integer",
-                                            "description": "状态码"
-                                        },
-                                        "message": {
-                                            "type": "string",
-                                            "description": "信息描述"
-                                        },
-                                        "data": {
-                                            "type": "null",
-                                            "description": "null"
-                                        }
-                                    },
-                                    "required": [
-                                        "code",
-                                        "message",
-                                        "data"
-                                    ]
-                                },
-                                "examples": {
-                                    "1": {
-                                        "summary": "成功示例",
-                                        "value": {
-                                            "code": 600,
-                                            "message": "success",
-                                            "data": null
-                                        }
-                                    }
-                                }
-                            }
-                        },
-                        "headers": {}
-                    }
-                },
-                "security": []
             }
         },
         "/api/v1/databases/list/data": {
@@ -816,6 +677,79 @@
                                                     "status": true
                                                 }
                                             ]
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "headers": {}
+                    }
+                },
+                "security": []
+            }
+        },
+        "/api/v1/databases/{database_id}/connection_status": {
+            "get": {
+                "summary": "测试数据库连接状态接口",
+                "deprecated": false,
+                "description": "测试指定数据库的连接状态。",
+                "tags": [],
+                "parameters": [
+                    {
+                        "name": "database_id",
+                        "in": "path",
+                        "description": "数据id",
+                        "required": true,
+                        "example": "OjBgxScYnLnO",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "x-api-key",
+                        "in": "header",
+                        "description": "",
+                        "required": true,
+                        "example": "sk-LelkzwwFuKJuGJijZnduQzCorcecOvoHX4MGP-GxpOYDXQmMRgRMjQzV0PMahsfzIkq7VyXzqLhrx4YF8Fyp5w",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "code": {
+                                            "type": "integer",
+                                            "description": "状态码"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "description": "相应信息"
+                                        },
+                                        "data": {
+                                            "type": "boolean",
+                                            "description": "数据库连接状态"
+                                        }
+                                    },
+                                    "required": [
+                                        "code",
+                                        "message",
+                                        "data"
+                                    ]
+                                },
+                                "examples": {
+                                    "1": {
+                                        "summary": "成功示例",
+                                        "value": {
+                                            "code": 600,
+                                            "message": "Connection successful",
+                                            "data": true
                                         }
                                     }
                                 }
