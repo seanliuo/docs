@@ -306,6 +306,16 @@
                                         "message",
                                         "data"
                                     ]
+                                },
+                                "examples": {
+                                    "1": {
+                                        "summary": "异常示例",
+                                        "value": {
+                                            "code": 700,
+                                            "message": "fail",
+                                            "data": null
+                                        }
+                                    }
                                 }
                             }
                         },
