@@ -98,11 +98,6 @@
       ]
     },
     {
-      "group": "Database (Knowledge base)",
-      "pages": [
-      ]
-    },
-    {
       "group": "会话接口",
       "pages": [
         "api-reference/endpoint/get",
