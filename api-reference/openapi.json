@@ -152,16 +152,6 @@
                 "tags": [],
                 "parameters": [
                     {
-                        "name": "upstream_url",
-                        "in": "query",
-                        "description": "",
-                        "required": true,
-                        "example": "https://flow.service.agione.ai/api/flow/service/272dc5e9-ff52-44fa-b0d4-7f4fda699d2e",
-                        "schema": {
-                            "type": "string"
-                        }
-                    },
-                    {
                         "name": "Content-Type",
                         "in": "header",
                         "description": "",
@@ -187,7 +177,57 @@
                         "application/json": {
                             "schema": {
                                 "type": "object",
-                                "properties": {}
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "description": {
+                                        "type": "string"
+                                    },
+                                    "prompt": {
+                                        "type": "string"
+                                    },
+                                    "database_name": {
+                                        "type": "string"
+                                    },
+                                    "database_type": {
+                                        "type": "string"
+                                    },
+                                    "hostname": {
+                                        "type": "string"
+                                    },
+                                    "port": {
+                                        "type": "integer"
+                                    },
+                                    "username": {
+                                        "type": "string"
+                                    },
+                                    "password": {
+                                        "type": "string"
+                                    }
+                                },
+                                "required": [
+                                    "name",
+                                    "description",
+                                    "prompt",
+                                    "database_name",
+                                    "database_type",
+                                    "hostname",
+                                    "port",
+                                    "username",
+                                    "password"
+                                ]
+                            },
+                            "example": {
+                                "name": "hello",
+                                "description": "this is a knowledge base",
+                                "prompt": "",
+                                "database_name": "library",
+                                "database_type": "postgresql",
+                                "hostname": "localhost",
+                                "port": 5432,
+                                "username": "postgres",
+                                "password": "baiyiyu"
                             }
                         }
                     }
