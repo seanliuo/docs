@@ -88,18 +88,18 @@
         "api-reference/endpoint/get",
         "api-reference/endpoint/post",
         "api-reference/endpoint/put",
-        "api-reference/endpoint/del"
-      ]
-    },
-    {
-      "group": "Database (Knowledge base)",
-      "pages": [
+        "api-reference/endpoint/del",
         "api-reference/endpoint/databasescreate",
         "api-reference/endpoint/databases_getbyid",
         "api-reference/endpoint/databases_getlist",
         "api-reference/endpoint/databases_updbyid",
         "api-reference/endpoint/databases_delbyid",
         "api-reference/endpoint/databases_getstate"
+      ]
+    },
+    {
+      "group": "Database (Knowledge base)",
+      "pages": [
       ]
     },
     {
